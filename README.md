@@ -43,8 +43,8 @@ If only an nmap scan is desired (no rustscan), then use the -n (--nmap) command 
 &ensp;# ./subnet-scanner 192.168.0.0/25 -N 443  
 &ensp;Same as previous example, but specifies the target port to use for nping (443 instead of default 53).  
 
-&ensp;# ./subnet-scanner 192.168.0.0/25 -n
+&ensp;# ./subnet-scanner 192.168.0.0/25 -n  
 &ensp;After fping, only run an nmap scan (no rustscan)  
 
-&ensp;# ./subnet-scanner 192.168.0.0/25 -r -N
+&ensp;# ./subnet-scanner 192.168.0.0/25 -r -N  
 &ensp;After fping, run nping on default target port 53 and only run a rustscan scan (no nmap).
