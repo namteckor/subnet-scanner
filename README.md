@@ -1,6 +1,8 @@
 # subnet-scanner
 Bash script to automate initial host discovery and port scanning using fping, nping, nmap and rustscan.  
-fping, nmap, nping and rustscan must be installed as pre-requisites to use subnet-scanner.
+fping, nmap, nping and rustscan must be installed as pre-requisites to use subnet-scanner.  
+
+The .txt files added to the repo are examples of results with subnet-scanner ran against a metasploitable2 host (192.168.0.100) blocking ICMP and a Vulnub's kioptrix VM (192.168.0.121) allowing ICMP.  
 
 ## Usage  
 &ensp;# ./subnet-scanner A.B.C.D/E [-r] [-n] [-a] [-N] [-h]  
