@@ -1,6 +1,15 @@
 # subnet-scanner
-Bash script to automate initial host discovery and port scanning using fping, nping, nmap and rustscan  
+Bash script to automate initial host discovery and port scanning using fping, nping, nmap and rustscan.  
 fping, nmap, nping and rustscan must be installed as pre-requisites to use subnet-scanner.
+
+## Usage  
+&ensp;Usage:./subnet-scanner A.B.C.D/E [-r] [-n] [-a] [-N] [-h]  
+&ensp;&ensp;[ -r | --rustscan ]&ensp;perform rustscan scan  
+&ensp;&ensp;[ -n | --nmap ]&ensp;&ensp;perform nmap scan  
+&ensp;&ensp;[ -a | --all ]&ensp;&ensp;perform both rustscan AND nmap scans (default if no switch specified)  
+&ensp;&ensp;[ -N | --nping ]&ensp;option to perform nping scan for hosts/subnets that may block ICMP,  
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;a target port can be specified, 53 is used by default  
+&ensp;&ensp;[ -h | --help ]  
 
 ## fping
 subnet-scanner will always start by running [fping](https://fping.org/) to discover responsive hosts on the specified subnet.  
@@ -18,12 +27,3 @@ If only a rustscan scan is desired (no nmap), then use the -r (--rustscan) comma
 ## nmap
 subnet-scanner supports running an [nmap](https://nmap.org/) scan on the discovered ./live_hosts.txt file, scanning for all 65535 ports, storing the detailed results into ./nmap.txt and the summary results into ./nmap_summary.txt.  
 If only an nmap scan is desired (no rustscan), then use the -n (--nmap) command switch. 
-
-## Usage  
-&ensp;Usage:./subnet-scanner A.B.C.D/E [-r] [-n] [-a] [-N] [-h] 
-&ensp;&ensp;[ -r | --rustscan ]&ensp;perform rustscan scan  
-&ensp;&ensp;[ -n | --nmap ]&ensp;&ensp;perform nmap scan  
-&ensp;&ensp;[ -a | --all ]&ensp;&ensp;perform both rustscan AND nmap scans (default if no switch specified)  
-&ensp;&ensp;[ -N | --nping ]&ensp;option to perform nping scan for hosts/subnets that may block ICMP,
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;a target port can be specified, 53 is used by default  
-&ensp;&ensp;[ -h | --help ]  
