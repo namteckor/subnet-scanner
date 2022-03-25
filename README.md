@@ -4,6 +4,8 @@ fping, nmap, nping and rustscan must be installed as pre-requisites to use subne
 
 The .txt files added to the repo are examples of results with subnet-scanner ran against a Metasploitable 2 VM (192.168.0.100) blocking ICMP and a VulnHub's Kioptrix VM (192.168.0.121) allowing ICMP.  
 
+**Only use on networks that you own and have explicit authorization to scan!**  
+
 ## Usage  
 &ensp;# ./subnet-scanner A.B.C.D/E [-r] [-n] [-a] [-N] [-h]  
 &ensp;&ensp;[ -r | --rustscan ] perform rustscan scan  
