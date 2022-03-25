@@ -4,11 +4,11 @@ fping, nmap, nping and rustscan must be installed as pre-requisites to use subne
 
 ## Usage  
 &ensp;Usage:./subnet-scanner A.B.C.D/E [-r] [-n] [-a] [-N] [-h]  
-&ensp;&ensp;[ -r | --rustscan ]&ensp;perform rustscan scan  
-&ensp;&ensp;[ -n | --nmap ]&ensp;&ensp;perform nmap scan  
-&ensp;&ensp;[ -a | --all ]&ensp;&ensp;perform both rustscan AND nmap scans (default if no switch specified)  
-&ensp;&ensp;[ -N | --nping ]&ensp;option to perform nping scan for hosts/subnets that may block ICMP,  
-&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;a target port can be specified, 53 is used by default  
+&ensp;&ensp;[ -r | --rustscan ] perform rustscan scan  
+&ensp;&ensp;[ -n | --nmap ] perform nmap scan  
+&ensp;&ensp;[ -a | --all ] perform both rustscan AND nmap scans (default if no switch specified)  
+&ensp;&ensp;[ -N | --nping ] option to perform nping scan for hosts/subnets that may block ICMP,  
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;a target port can be specified, 53 is used by default  
 &ensp;&ensp;[ -h | --help ]  
 
 ## fping
