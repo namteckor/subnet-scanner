@@ -1,0 +1,452 @@
+[1m[38;2;0;255;0m.[38;2;0;255;6m-[38;2;0;255;13m-[38;2;0;255;19m-[38;2;0;255;25m-[38;2;0;255;32m.[38;2;0;255;38m [38;2;0;255;45m.[38;2;0;255;51m-[38;2;0;255;57m.[38;2;0;255;64m [38;2;0;255;70m.[38;2;0;255;76m-[38;2;0;255;83m.[38;2;0;255;89m [38;2;0;255;96m.[38;2;0;255;102m-[38;2;0;255;108m-[38;2;0;255;115m-[38;2;0;255;121m-[38;2;0;255;127m.[38;2;0;255;134m.[38;2;0;255;140m-[38;2;0;255;147m-[38;2;0;255;153m-[38;2;0;255;159m.[38;2;0;255;166m [38;2;0;255;172m [38;2;0;255;178m.[38;2;0;255;185m-[38;2;0;255;191m-[38;2;0;255;198m-[38;2;0;255;204m-[38;2;0;255;210m.[38;2;0;255;217m [38;2;0;255;223m.[38;2;0;255;229m-[38;2;0;255;236m-[38;2;0;255;242m-[38;2;0;255;249m.[38;2;0;255;255m [38;2;0;249;255m [38;2;0;242;255m [38;2;0;236;255m.[38;2;0;230;255m-[38;2;0;223;255m-[38;2;0;217;255m.[38;2;0;210;255m [38;2;0;204;255m [38;2;0;198;255m.[38;2;0;191;255m-[38;2;0;185;255m.[38;2;0;179;255m [38;2;0;172;255m.[38;2;0;166;255m-[38;2;0;159;255m.[0m
+[38;2;0;255;0m|[38;2;0;255;6m [38;2;0;255;13m{[38;2;0;255;19m}[38;2;0;255;25m [38;2;0;255;32m [38;2;0;255;38m}[38;2;0;255;45m|[38;2;0;255;51m [38;2;0;255;57m{[38;2;0;255;64m [38;2;0;255;70m}[38;2;0;255;76m [38;2;0;255;83m|[38;2;0;255;89m{[38;2;0;255;96m [38;2;0;255;102m{[38;2;0;255;108m_[38;2;0;255;115m_[38;2;0;255;121m [38;2;0;255;127m{[38;2;0;255;134m_[38;2;0;255;140m [38;2;0;255;147m [38;2;0;255;153m [38;2;0;255;159m_[38;2;0;255;166m}[38;2;0;255;172m{[38;2;0;255;178m [38;2;0;255;185m{[38;2;0;255;191m_[38;2;0;255;198m_[38;2;0;255;204m [38;2;0;255;210m [38;2;0;255;217m/[38;2;0;255;223m [38;2;0;255;229m [38;2;0;255;236m_[38;2;0;255;242m_[38;2;0;255;249m_[38;2;0;255;255m}[38;2;0;249;255m [38;2;0;242;255m/[38;2;0;236;255m [38;2;0;230;255m{[38;2;0;223;255m}[38;2;0;217;255m [38;2;0;210;255m\[38;2;0;204;255m [38;2;0;198;255m|[38;2;0;191;255m [38;2;0;185;255m [38;2;0;179;255m`[38;2;0;172;255m|[38;2;0;166;255m [38;2;0;159;255m|[0m
+[38;2;0;255;0m|[38;2;0;255;6m [38;2;0;255;13m.[38;2;0;255;19m-[38;2;0;255;25m.[38;2;0;255;32m [38;2;0;255;38m\[38;2;0;255;45m|[38;2;0;255;51m [38;2;0;255;57m{[38;2;0;255;64m_[38;2;0;255;70m}[38;2;0;255;76m [38;2;0;255;83m|[38;2;0;255;89m.[38;2;0;255;96m-[38;2;0;255;102m.[38;2;0;255;108m_[38;2;0;255;115m}[38;2;0;255;121m [38;2;0;255;127m}[38;2;0;255;134m [38;2;0;255;140m|[38;2;0;255;147m [38;2;0;255;153m|[38;2;0;255;159m [38;2;0;255;166m [38;2;0;255;172m.[38;2;0;255;178m-[38;2;0;255;185m.[38;2;0;255;191m_[38;2;0;255;198m}[38;2;0;255;204m [38;2;0;255;210m}[38;2;0;255;217m\[38;2;0;255;223m [38;2;0;255;229m [38;2;0;255;236m [38;2;0;255;242m [38;2;0;255;249m [38;2;0;255;255m}[38;2;0;249;255m/[38;2;0;242;255m [38;2;0;236;255m [38;2;0;230;255m/[38;2;0;223;255m\[38;2;0;217;255m [38;2;0;210;255m [38;2;0;204;255m\[38;2;0;198;255m|[38;2;0;191;255m [38;2;0;185;255m|[38;2;0;179;255m\[38;2;0;172;255m [38;2;0;166;255m [38;2;0;159;255m|[0m
+[38;2;0;255;0m`[38;2;0;255;6m-[38;2;0;255;13m'[38;2;0;255;19m [38;2;0;255;25m`[38;2;0;255;32m-[38;2;0;255;38m'[38;2;0;255;45m`[38;2;0;255;51m-[38;2;0;255;57m-[38;2;0;255;64m-[38;2;0;255;70m-[38;2;0;255;76m-[38;2;0;255;83m'[38;2;0;255;89m`[38;2;0;255;96m-[38;2;0;255;102m-[38;2;0;255;108m-[38;2;0;255;115m-[38;2;0;255;121m'[38;2;0;255;127m [38;2;0;255;134m [38;2;0;255;140m`[38;2;0;255;147m-[38;2;0;255;153m'[38;2;0;255;159m [38;2;0;255;166m [38;2;0;255;172m`[38;2;0;255;178m-[38;2;0;255;185m-[38;2;0;255;191m-[38;2;0;255;198m-[38;2;0;255;204m'[38;2;0;255;210m [38;2;0;255;217m [38;2;0;255;223m`[38;2;0;255;229m-[38;2;0;255;236m-[38;2;0;255;242m-[38;2;0;255;249m'[38;2;0;255;255m [38;2;0;249;255m`[38;2;0;242;255m-[38;2;0;236;255m'[38;2;0;230;255m [38;2;0;223;255m [38;2;0;217;255m`[38;2;0;210;255m-[38;2;0;204;255m'[38;2;0;198;255m`[38;2;0;191;255m-[38;2;0;185;255m'[38;2;0;179;255m [38;2;0;172;255m`[38;2;0;166;255m-[38;2;0;159;255m'[0m
+[38;2;0;255;0mT[38;2;0;255;6mh[38;2;0;255;13me[38;2;0;255;19m [38;2;0;255;25mM[38;2;0;255;32mo[38;2;0;255;38md[38;2;0;255;45me[38;2;0;255;51mr[38;2;0;255;57mn[38;2;0;255;64m [38;2;0;255;70mD[38;2;0;255;76ma[38;2;0;255;83my[38;2;0;255;89m [38;2;0;255;96mP[38;2;0;255;102mo[38;2;0;255;108mr[38;2;0;255;115mt[38;2;0;255;121m [38;2;0;255;127mS[38;2;0;255;134mc[38;2;0;255;140ma[38;2;0;255;147mn[38;2;0;255;153mn[38;2;0;255;159me[38;2;0;255;166mr[38;2;0;255;172m.[0m[0m
+[1m[38;2;255;255;0m_[38;2;249;255;0m_[38;2;242;255;0m_[38;2;236;255;0m_[38;2;230;255;0m_[38;2;223;255;0m_[38;2;217;255;0m_[38;2;210;255;0m_[38;2;204;255;0m_[38;2;198;255;0m_[38;2;191;255;0m_[38;2;185;255;0m_[38;2;179;255;0m_[38;2;172;255;0m_[38;2;166;255;0m_[38;2;159;255;0m_[38;2;153;255;0m_[38;2;147;255;0m_[38;2;140;255;0m_[38;2;134;255;0m_[38;2;128;255;0m_[38;2;121;255;0m_[38;2;115;255;0m_[38;2;108;255;0m_[38;2;102;255;0m_[38;2;96;255;0m_[38;2;89;255;0m_[38;2;83;255;0m_[38;2;77;255;0m_[38;2;70;255;0m_[38;2;64;255;0m_[38;2;57;255;0m_[38;2;51;255;0m_[38;2;45;255;0m_[38;2;38;255;0m_[38;2;32;255;0m_[38;2;26;255;0m_[38;2;19;255;0m_[38;2;13;255;0m_[38;2;6;255;0m_[0m
+[38;2;255;255;0m:[38;2;249;255;0m [38;2;242;255;0mh[38;2;236;255;0mt[38;2;230;255;0mt[38;2;223;255;0mp[38;2;217;255;0ms[38;2;210;255;0m:[38;2;204;255;0m/[38;2;198;255;0m/[38;2;191;255;0md[38;2;185;255;0mi[38;2;179;255;0ms[38;2;172;255;0mc[38;2;166;255;0mo[38;2;159;255;0mr[38;2;153;255;0md[38;2;147;255;0m.[38;2;140;255;0mg[38;2;134;255;0mg[38;2;128;255;0m/[38;2;121;255;0mG[38;2;115;255;0mF[38;2;108;255;0mr[38;2;102;255;0mQ[38;2;96;255;0ms[38;2;89;255;0mG[38;2;83;255;0my[38;2;77;255;0m [38;2;70;255;0m [38;2;64;255;0m [38;2;57;255;0m [38;2;51;255;0m [38;2;45;255;0m [38;2;38;255;0m [38;2;32;255;0m [38;2;26;255;0m [38;2;19;255;0m [38;2;13;255;0m [38;2;6;255;0m:[0m
+[38;2;255;255;0m:[38;2;249;255;0m [38;2;242;255;0mh[38;2;236;255;0mt[38;2;230;255;0mt[38;2;223;255;0mp[38;2;217;255;0ms[38;2;210;255;0m:[38;2;204;255;0m/[38;2;198;255;0m/[38;2;191;255;0mg[38;2;185;255;0mi[38;2;179;255;0mt[38;2;172;255;0mh[38;2;166;255;0mu[38;2;159;255;0mb[38;2;153;255;0m.[38;2;147;255;0mc[38;2;140;255;0mo[38;2;134;255;0mm[38;2;128;255;0m/[38;2;121;255;0mR[38;2;115;255;0mu[38;2;108;255;0ms[38;2;102;255;0mt[38;2;96;255;0mS[38;2;89;255;0mc[38;2;83;255;0ma[38;2;77;255;0mn[38;2;70;255;0m/[38;2;64;255;0mR[38;2;57;255;0mu[38;2;51;255;0ms[38;2;45;255;0mt[38;2;38;255;0mS[38;2;32;255;0mc[38;2;26;255;0ma[38;2;19;255;0mn[38;2;13;255;0m [38;2;6;255;0m:[0m
+[38;2;255;255;0m [38;2;249;255;0m-[38;2;242;255;0m-[38;2;236;255;0m-[38;2;230;255;0m-[38;2;223;255;0m-[38;2;217;255;0m-[38;2;210;255;0m-[38;2;204;255;0m-[38;2;198;255;0m-[38;2;191;255;0m-[38;2;185;255;0m-[38;2;179;255;0m-[38;2;172;255;0m-[38;2;166;255;0m-[38;2;159;255;0m-[38;2;153;255;0m-[38;2;147;255;0m-[38;2;140;255;0m-[38;2;134;255;0m-[38;2;128;255;0m-[38;2;121;255;0m-[38;2;115;255;0m-[38;2;108;255;0m-[38;2;102;255;0m-[38;2;96;255;0m-[38;2;89;255;0m-[38;2;83;255;0m-[38;2;77;255;0m-[38;2;70;255;0m-[38;2;64;255;0m-[38;2;57;255;0m-[38;2;51;255;0m-[38;2;45;255;0m-[38;2;38;255;0m-[38;2;32;255;0m-[38;2;26;255;0m-[38;2;19;255;0m-[38;2;13;255;0m-[0m[0m
+😵 https://admin.tryhackme.com
+
+[1;34m[~][0m The config file is expected to be at "/home/Username/.rustscan.toml"
+[1;34m[~][0m Automatically increasing ulimit value to 5000.
+Open 192.168.0.100:80
+Open 192.168.0.121:80
+Open 192.168.0.121:111
+Open 192.168.0.100:111
+Open 192.168.0.100:139
+Open 192.168.0.121:139
+Open 192.168.0.121:443
+Open 192.168.0.100:445
+Open 192.168.0.100:512
+Open 192.168.0.100:513
+Open 192.168.0.100:514
+Open 192.168.0.100:1099
+Open 192.168.0.100:1524
+Open 192.168.0.100:2049
+Open 192.168.0.100:2121
+Open 192.168.0.100:21
+Open 192.168.0.100:22
+Open 192.168.0.121:22
+Open 192.168.0.100:23
+Open 192.168.0.100:25
+Open 192.168.0.100:53
+Open 192.168.0.100:3306
+Open 192.168.0.100:3632
+Open 192.168.0.100:5432
+Open 192.168.0.100:5900
+Open 192.168.0.100:6000
+Open 192.168.0.100:6667
+Open 192.168.0.100:6697
+Open 192.168.0.100:8009
+Open 192.168.0.100:8180
+Open 192.168.0.100:8787
+Open 192.168.0.121:32768
+Open 192.168.0.100:37500
+Open 192.168.0.100:39897
+Open 192.168.0.100:42349
+Open 192.168.0.100:44588
+[1;34m[~][0m Starting Script(s)
+[1;38;2;0;255;9m[>][0m Script to be run Some("nmap -vvv -p {{port}} {{ip}}")
+
+[1;34m[~][0m Starting Nmap 7.92 ( https://nmap.org ) at 2022-03-24 11:58 PDT
+NSE: Loaded 155 scripts for scanning.
+NSE: Script Pre-scanning.
+NSE: Starting runlevel 1 (of 3) scan.
+Initiating NSE at 11:58
+Completed NSE at 11:58, 0.00s elapsed
+NSE: Starting runlevel 2 (of 3) scan.
+Initiating NSE at 11:58
+Completed NSE at 11:58, 0.00s elapsed
+NSE: Starting runlevel 3 (of 3) scan.
+Initiating NSE at 11:58
+Completed NSE at 11:58, 0.00s elapsed
+Initiating Ping Scan at 11:58
+Scanning 192.168.0.100 [2 ports]
+Completed Ping Scan at 11:58, 0.00s elapsed (1 total hosts)
+Initiating Parallel DNS resolution of 1 host. at 11:58
+Completed Parallel DNS resolution of 1 host. at 11:58, 0.04s elapsed
+DNS resolution of 1 IPs took 0.04s. Mode: Async [#: 2, OK: 0, NX: 1, DR: 0, SF: 0, TR: 1, CN: 0]
+Initiating Connect Scan at 11:58
+Scanning 192.168.0.100 [30 ports]
+Discovered open port 23/tcp on 192.168.0.100
+Discovered open port 3306/tcp on 192.168.0.100
+Discovered open port 139/tcp on 192.168.0.100
+Discovered open port 25/tcp on 192.168.0.100
+Discovered open port 80/tcp on 192.168.0.100
+Discovered open port 21/tcp on 192.168.0.100
+Discovered open port 5900/tcp on 192.168.0.100
+Discovered open port 22/tcp on 192.168.0.100
+Discovered open port 111/tcp on 192.168.0.100
+Discovered open port 53/tcp on 192.168.0.100
+Discovered open port 445/tcp on 192.168.0.100
+Discovered open port 2049/tcp on 192.168.0.100
+Discovered open port 514/tcp on 192.168.0.100
+Discovered open port 6667/tcp on 192.168.0.100
+Discovered open port 6697/tcp on 192.168.0.100
+Discovered open port 1099/tcp on 192.168.0.100
+Discovered open port 8787/tcp on 192.168.0.100
+Discovered open port 42349/tcp on 192.168.0.100
+Discovered open port 39897/tcp on 192.168.0.100
+Discovered open port 513/tcp on 192.168.0.100
+Discovered open port 512/tcp on 192.168.0.100
+Discovered open port 3632/tcp on 192.168.0.100
+Discovered open port 2121/tcp on 192.168.0.100
+Discovered open port 6000/tcp on 192.168.0.100
+Discovered open port 44588/tcp on 192.168.0.100
+Discovered open port 8180/tcp on 192.168.0.100
+Discovered open port 8009/tcp on 192.168.0.100
+Discovered open port 1524/tcp on 192.168.0.100
+Discovered open port 5432/tcp on 192.168.0.100
+Discovered open port 37500/tcp on 192.168.0.100
+Completed Connect Scan at 11:58, 0.01s elapsed (30 total ports)
+Initiating Service scan at 11:58
+Scanning 30 services on 192.168.0.100
+Service scan Timing: About 80.00% done; ETC: 12:01 (0:00:33 remaining)
+Completed Service scan at 12:01, 163.62s elapsed (30 services on 1 host)
+NSE: Script scanning 192.168.0.100.
+NSE: Starting runlevel 1 (of 3) scan.
+Initiating NSE at 12:01
+NSE: [ftp-bounce 192.168.0.100:21] PORT response: 500 Illegal PORT command.
+NSE Timing: About 99.71% done; ETC: 12:02 (0:00:00 remaining)
+NSE Timing: About 99.85% done; ETC: 12:02 (0:00:00 remaining)
+Completed NSE at 12:02, 85.03s elapsed
+NSE: Starting runlevel 2 (of 3) scan.
+Initiating NSE at 12:02
+NSE Timing: About 97.13% done; ETC: 12:03 (0:00:01 remaining)
+Completed NSE at 12:03, 54.83s elapsed
+NSE: Starting runlevel 3 (of 3) scan.
+Initiating NSE at 12:03
+Completed NSE at 12:03, 0.00s elapsed
+Nmap scan report for 192.168.0.100
+Host is up, received syn-ack (0.0018s latency).
+Scanned at 2022-03-24 11:58:49 PDT for 304s
+
+PORT      STATE SERVICE      REASON  VERSION
+21/tcp    open  ftp          syn-ack vsftpd 2.3.4
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to 192.168.0.10
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      vsFTPd 2.3.4 - secure, fast, stable
+|_End of status
+|_ftp-anon: Anonymous FTP login allowed (FTP code 230)
+22/tcp    open  ssh          syn-ack OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
+| ssh-hostkey: 
+|   1024 60:0f:cf:e1:c0:5f:6a:74:d6:90:24:fa:c4:d5:6c:cd (DSA)
+| ssh-dss AAAAB3NzaC1kc3MAAACBALz4hsc8a2Srq4nlW960qV8xwBG0JC+jI7fWxm5METIJH4tKr/xUTwsTYEYnaZLzcOiy21D3ZvOwYb6AA3765zdgCd2Tgand7F0YD5UtXG7b7fbz99chReivL0SIWEG/E96Ai+pqYMP2WD5KaOJwSIXSUajnU5oWmY5x85sBw+XDAAAAFQDFkMpmdFQTF+oRqaoSNVU7Z+hjSwAAAIBCQxNKzi1TyP+QJIFa3M0oLqCVWI0We/ARtXrzpBOJ/dt0hTJXCeYisKqcdwdtyIn8OUCOyrIjqNuA2QW217oQ6wXpbFh+5AQm8Hl3b6C6o8lX3Ptw+Y4dp0lzfWHwZ/jzHwtuaDQaok7u1f971lEazeJLqfiWrAzoklqSWyDQJAAAAIA1lAD3xWYkeIeHv/R3P9i+XaoI7imFkMuYXCDTq843YU6Td+0mWpllCqAWUV/CQamGgQLtYy5S0ueoks01MoKdOMMhKVwqdr08nvCBdNKjIEd3gH6oBk/YRnjzxlEAYBsvCmM4a0jmhz0oNiRWlc/F+bkUeFKrBx/D2fdfZmhrGg==
+|   2048 56:56:24:0f:21:1d:de:a7:2b:ae:61:b1:24:3d:e8:f3 (RSA)
+|_ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAstqnuFMBOZvO3WTEjP4TUdjgWkIVNdTq6kboEDjteOfc65TlI7sRvQBwqAhQjeeyyIk8T55gMDkOD0akSlSXvLDcmcdYfxeIF0ZSuT+nkRhij7XSSA/Oc5QSk3sJ/SInfb78e3anbRHpmkJcVgETJ5WhKObUNf1AKZW++4Xlc63M4KI5cjvMMIPEVOyR3AKmI78Fo3HJjYucg87JjLeC66I7+dlEYX6zT8i1XYwa/L1vZ3qSJISGVu8kRPikMv/cNSvki4j+qDYyZ2E5497W87+Ed46/8P42LNGoOV8OcX/ro6pAcbEPUdUEfkJrqi2YXbhvwIJ0gFMb6wfe5cnQew==
+23/tcp    open  telnet?      syn-ack
+25/tcp    open  smtp?        syn-ack
+|_smtp-commands: metasploitable.localdomain, PIPELINING, SIZE 10240000, VRFY, ETRN, STARTTLS, ENHANCEDSTATUSCODES, 8BITMIME, DSN
+53/tcp    open  domain       syn-ack ISC BIND 9.4.2
+| dns-nsid: 
+|_  bind.version: 9.4.2
+80/tcp    open  http         syn-ack Apache httpd 2.2.8 ((Ubuntu) DAV/2)
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-server-header: Apache/2.2.8 (Ubuntu) DAV/2
+|_http-title: Metasploitable2 - Linux
+111/tcp   open  rpcbind      syn-ack 2 (RPC #100000)
+| rpcinfo: 
+|   program version    port/proto  service
+|   100000  2            111/tcp   rpcbind
+|   100000  2            111/udp   rpcbind
+|   100003  2,3,4       2049/tcp   nfs
+|   100003  2,3,4       2049/udp   nfs
+|   100005  1,2,3      44588/tcp   mountd
+|   100005  1,2,3      49855/udp   mountd
+|   100021  1,3,4      37500/tcp   nlockmgr
+|   100021  1,3,4      44983/udp   nlockmgr
+|   100024  1          42349/tcp   status
+|_  100024  1          53292/udp   status
+139/tcp   open  netbios-ssn  syn-ack Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+445/tcp   open  netbios-ssn  syn-ack Samba smbd 3.0.20-Debian (workgroup: WORKGROUP)
+512/tcp   open  exec?        syn-ack
+513/tcp   open  login?       syn-ack
+514/tcp   open  shell?       syn-ack
+1099/tcp  open  java-rmi     syn-ack GNU Classpath grmiregistry
+1524/tcp  open  bindshell    syn-ack Metasploitable root shell
+2049/tcp  open  nfs          syn-ack 2-4 (RPC #100003)
+2121/tcp  open  ccproxy-ftp? syn-ack
+3306/tcp  open  mysql?       syn-ack
+|_tls-nextprotoneg: ERROR: Script execution failed (use -d to debug)
+|_sslv2: ERROR: Script execution failed (use -d to debug)
+|_ssl-cert: ERROR: Script execution failed (use -d to debug)
+|_mysql-info: ERROR: Script execution failed (use -d to debug)
+|_tls-alpn: ERROR: Script execution failed (use -d to debug)
+|_ssl-date: ERROR: Script execution failed (use -d to debug)
+3632/tcp  open  distccd      syn-ack distccd v1 ((GNU) 4.2.4 (Ubuntu 4.2.4-1ubuntu4))
+5432/tcp  open  postgresql   syn-ack PostgreSQL DB 8.3.0 - 8.3.7
+|_ssl-date: 2022-03-24T19:03:04+00:00; -2s from scanner time.
+| ssl-cert: Subject: commonName=ubuntu804-base.localdomain/organizationName=OCOSA/stateOrProvinceName=There is no such thing outside US/countryName=XX/emailAddress=root@ubuntu804-base.localdomain/localityName=Everywhere/organizationalUnitName=Office for Complication of Otherwise Simple Affairs
+| Issuer: commonName=ubuntu804-base.localdomain/organizationName=OCOSA/stateOrProvinceName=There is no such thing outside US/countryName=XX/emailAddress=root@ubuntu804-base.localdomain/localityName=Everywhere/organizationalUnitName=Office for Complication of Otherwise Simple Affairs
+| Public Key type: rsa
+| Public Key bits: 1024
+| Signature Algorithm: sha1WithRSAEncryption
+| Not valid before: 2010-03-17T14:07:45
+| Not valid after:  2010-04-16T14:07:45
+| MD5:   dcd9 ad90 6c8f 2f73 74af 383b 2540 8828
+| SHA-1: ed09 3088 7066 03bf d5dc 2373 99b4 98da 2d4d 31c6
+| -----BEGIN CERTIFICATE-----
+| MIIDWzCCAsQCCQD6+TpMf7a5zDANBgkqhkiG9w0BAQUFADCB8TELMAkGA1UEBhMC
+| WFgxKjAoBgNVBAgTIVRoZXJlIGlzIG5vIHN1Y2ggdGhpbmcgb3V0c2lkZSBVUzET
+| MBEGA1UEBxMKRXZlcnl3aGVyZTEOMAwGA1UEChMFT0NPU0ExPDA6BgNVBAsTM09m
+| ZmljZSBmb3IgQ29tcGxpY2F0aW9uIG9mIE90aGVyd2lzZSBTaW1wbGUgQWZmYWly
+| czEjMCEGA1UEAxMadWJ1bnR1ODA0LWJhc2UubG9jYWxkb21haW4xLjAsBgkqhkiG
+| 9w0BCQEWH3Jvb3RAdWJ1bnR1ODA0LWJhc2UubG9jYWxkb21haW4wHhcNMTAwMzE3
+| MTQwNzQ1WhcNMTAwNDE2MTQwNzQ1WjCB8TELMAkGA1UEBhMCWFgxKjAoBgNVBAgT
+| IVRoZXJlIGlzIG5vIHN1Y2ggdGhpbmcgb3V0c2lkZSBVUzETMBEGA1UEBxMKRXZl
+| cnl3aGVyZTEOMAwGA1UEChMFT0NPU0ExPDA6BgNVBAsTM09mZmljZSBmb3IgQ29t
+| cGxpY2F0aW9uIG9mIE90aGVyd2lzZSBTaW1wbGUgQWZmYWlyczEjMCEGA1UEAxMa
+| dWJ1bnR1ODA0LWJhc2UubG9jYWxkb21haW4xLjAsBgkqhkiG9w0BCQEWH3Jvb3RA
+| dWJ1bnR1ODA0LWJhc2UubG9jYWxkb21haW4wgZ8wDQYJKoZIhvcNAQEBBQADgY0A
+| MIGJAoGBANa0EzYzmpVxexvefIN12nGxPKl//q1kG3fpT66+ytT4y++uu0N5JHP/
+| POWeO238yLGs+kxNXptMmVQL16hKULqp3h0f9ORrAqP0a0XNTK+NiWIzj2W7NmGf
+| xCxzwU4uoKgUTphwRmG70bkx34yZ7nVreTxAoK6XAJCd3JkNM6S1AgMBAAEwDQYJ
+| KoZIhvcNAQEFBQADgYEAkqS0uBRVYyVRSgvDKiLPOvgXagzPZqqnZS9Ibc3jPlyf
+| d2zURFQfHoRPjtSN3awtiAkhqNpWLKkFPEloNRl1DNpTI4iIGS10JsEiZe4RaINq
+| U0qcJ8ugtOmNKQyyPBhcZ8xTph4w0Komex6uQLkpAWwuvKIZlHwVbo0wOPbKLnU=
+|_-----END CERTIFICATE-----
+5900/tcp  open  vnc          syn-ack VNC (protocol 3.3)
+| vnc-info: 
+|   Protocol version: 3.3
+|   Security types: 
+|_    VNC Authentication (2)
+6000/tcp  open  X11          syn-ack (access denied)
+6667/tcp  open  irc          syn-ack UnrealIRCd
+6697/tcp  open  irc          syn-ack UnrealIRCd
+8009/tcp  open  ajp13        syn-ack Apache Jserv (Protocol v1.3)
+|_ajp-methods: Failed to get a valid response for the OPTION request
+8180/tcp  open  http         syn-ack Apache Tomcat/Coyote JSP engine 1.1
+|_http-title: Apache Tomcat/5.5
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-favicon: Apache Tomcat
+8787/tcp  open  drb          syn-ack Ruby DRb RMI (Ruby 1.8; path /usr/lib/ruby/1.8/drb)
+37500/tcp open  nlockmgr     syn-ack 1-4 (RPC #100021)
+39897/tcp open  java-rmi     syn-ack GNU Classpath grmiregistry
+42349/tcp open  status       syn-ack 1 (RPC #100024)
+44588/tcp open  mountd       syn-ack 1-3 (RPC #100005)
+Service Info: Host: irc.Metasploitable.LAN; OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+| nbstat: NetBIOS name: METASPLOITABLE, NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
+| Names:
+|   METASPLOITABLE<00>   Flags: <unique><active>
+|   METASPLOITABLE<03>   Flags: <unique><active>
+|   METASPLOITABLE<20>   Flags: <unique><active>
+|   \x01\x02__MSBROWSE__\x02<01>  Flags: <group><active>
+|   WORKGROUP<00>        Flags: <group><active>
+|   WORKGROUP<1d>        Flags: <unique><active>
+|   WORKGROUP<1e>        Flags: <group><active>
+| Statistics:
+|   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+|   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+|_  00 00 00 00 00 00 00 00 00 00 00 00 00 00
+|_smb2-time: Protocol negotiation failed (SMB2)
+| smb-os-discovery: 
+|   OS: Unix (Samba 3.0.20-Debian)
+|   Computer name: metasploitable
+|   NetBIOS computer name: 
+|   Domain name: localdomain
+|   FQDN: metasploitable.localdomain
+|_  System time: 2022-03-24T15:01:33-04:00
+|_clock-skew: mean: 1h19m58s, deviation: 2h18m34s, median: -1s
+| p2p-conficker: 
+|   Checking for Conficker.C or higher...
+|   Check 1 (port 64424/tcp): CLEAN (Couldn't connect)
+|   Check 2 (port 25042/tcp): CLEAN (Couldn't connect)
+|   Check 3 (port 18652/udp): CLEAN (Failed to receive data)
+|   Check 4 (port 61712/udp): CLEAN (Failed to receive data)
+|_  0/4 checks are positive: Host is CLEAN or ports are blocked
+| smb-security-mode: 
+|   account_used: <blank>
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+|_smb2-security-mode: Couldn't establish a SMBv2 connection.
+
+NSE: Script Post-scanning.
+NSE: Starting runlevel 1 (of 3) scan.
+Initiating NSE at 12:03
+Completed NSE at 12:03, 0.00s elapsed
+NSE: Starting runlevel 2 (of 3) scan.
+Initiating NSE at 12:03
+Completed NSE at 12:03, 0.00s elapsed
+NSE: Starting runlevel 3 (of 3) scan.
+Initiating NSE at 12:03
+Completed NSE at 12:03, 0.00s elapsed
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 304.25 seconds
+
+[1;34m[~][0m Starting Script(s)
+[1;38;2;0;255;9m[>][0m Script to be run Some("nmap -vvv -p {{port}} {{ip}}")
+
+[1;34m[~][0m Starting Nmap 7.92 ( https://nmap.org ) at 2022-03-24 12:03 PDT
+NSE: Loaded 155 scripts for scanning.
+NSE: Script Pre-scanning.
+NSE: Starting runlevel 1 (of 3) scan.
+Initiating NSE at 12:03
+Completed NSE at 12:03, 0.00s elapsed
+NSE: Starting runlevel 2 (of 3) scan.
+Initiating NSE at 12:03
+Completed NSE at 12:03, 0.00s elapsed
+NSE: Starting runlevel 3 (of 3) scan.
+Initiating NSE at 12:03
+Completed NSE at 12:03, 0.00s elapsed
+Initiating Ping Scan at 12:03
+Scanning 192.168.0.121 [2 ports]
+Completed Ping Scan at 12:03, 0.00s elapsed (1 total hosts)
+Initiating Parallel DNS resolution of 1 host. at 12:03
+Completed Parallel DNS resolution of 1 host. at 12:03, 0.03s elapsed
+DNS resolution of 1 IPs took 0.03s. Mode: Async [#: 2, OK: 0, NX: 1, DR: 0, SF: 0, TR: 1, CN: 0]
+Initiating Connect Scan at 12:03
+Scanning 192.168.0.121 [6 ports]
+Discovered open port 22/tcp on 192.168.0.121
+Discovered open port 111/tcp on 192.168.0.121
+Discovered open port 139/tcp on 192.168.0.121
+Discovered open port 443/tcp on 192.168.0.121
+Discovered open port 80/tcp on 192.168.0.121
+Discovered open port 32768/tcp on 192.168.0.121
+Completed Connect Scan at 12:03, 0.00s elapsed (6 total ports)
+Initiating Service scan at 12:03
+Scanning 6 services on 192.168.0.121
+Completed Service scan at 12:04, 6.03s elapsed (6 services on 1 host)
+NSE: Script scanning 192.168.0.121.
+NSE: Starting runlevel 1 (of 3) scan.
+Initiating NSE at 12:04
+Completed NSE at 12:04, 10.83s elapsed
+NSE: Starting runlevel 2 (of 3) scan.
+Initiating NSE at 12:04
+Completed NSE at 12:04, 1.17s elapsed
+NSE: Starting runlevel 3 (of 3) scan.
+Initiating NSE at 12:04
+Completed NSE at 12:04, 0.00s elapsed
+Nmap scan report for 192.168.0.121
+Host is up, received syn-ack (0.00065s latency).
+Scanned at 2022-03-24 12:03:54 PDT for 18s
+
+PORT      STATE SERVICE     REASON  VERSION
+22/tcp    open  ssh         syn-ack OpenSSH 2.9p2 (protocol 1.99)
+|_sshv1: Server supports SSHv1
+| ssh-hostkey: 
+|   1024 b8:74:6c:db:fd:8b:e6:66:e9:2a:2b:df:5e:6f:64:86 (RSA1)
+| 1024 35 109482092953601530927446985143812377560925655194254170270380314520841776849335628258408994190413716152105684423280369467219093526740118507720167655934779634416983599247086840099503203800281526143567271862466057363705861760702664279290804439502645034586412570490614431533437479630834594344497670338190191879537
+|   1024 8f:8e:5b:81:ed:21:ab:c1:80:e1:57:a3:3c:85:c4:71 (DSA)
+| ssh-dss AAAAB3NzaC1kc3MAAACBAKtycvxuV/e7s2cN74HyTZXHXiBrwyiZe/PKT/inuT5NDSQTPsGiyJZU4gefPAsYKSw5wLe28TDlZWHAdXpNdwyn4QrFQBjwFR+8WbFiAZBoWlSfQPR2RQW8i32Y2P2V79p4mu742HtWBz0hTjkd9qL5j8KCUPDfY9hzDuViWy7PAAAAFQCY9bvq+5rs1OpY5/DGsGx0k6CqGwAAAIBVpBtIHbhvoQdN0WPe8d6OzTTFvdNRa8pWKzV1Hpw+e3qsC4LYHAy1NoeaqK8uJP9203MEkxrd2OoBJKn/8EXlKAco7vC1dr/QWae+NEkI1a38x0Ml545vHAGFaVUWkffHekjhR476Uq4N4qeLfFp5B+v+9flLxYVYsY/ymJKpNgAAAIEApyjrqjgX0AE4fSBFntGFWM3j5M3lc5jw/0qufXlHJu8sZG0FRf9wTI6HlJHHsIKHA7FZ33vGLq3TRmvZucJZ0l55fV2ASS9uvQRE+c8P6w72YCzgJN7v4hYXxnY4RiWvINjW/F6ApQEUJc742i6Fn54FEYAIy5goatGFMwpVq3Q=
+|   1024 ed:4e:a9:4a:06:14:ff:15:14:ce:da:3a:80:db:e2:81 (RSA)
+|_ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEAvv8UUWsrO7+VCG/rTWY72jElft4WXfXGWybh141E8XnWxMCu+R1qdocxhh+4Clz8wO9beuZzG1rjlAD+XHiR3j2P+sw6UODeyBkuP24a+7V8P5nu9ksKD1fA83RyelgSgRJNQgPfFU3gngNno1yN6ossqkcMQTI1CY5nF6iYePs=
+80/tcp    open  http        syn-ack Apache httpd 1.3.20 ((Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b)
+|_http-server-header: Apache/1.3.20 (Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b
+|_http-title: Test Page for the Apache Web Server on Red Hat Linux
+| http-methods: 
+|   Supported Methods: GET HEAD OPTIONS TRACE
+|_  Potentially risky methods: TRACE
+111/tcp   open  rpcbind     syn-ack 2 (RPC #100000)
+| rpcinfo: 
+|   program version    port/proto  service
+|   100000  2            111/tcp   rpcbind
+|   100000  2            111/udp   rpcbind
+|   100024  1          32768/tcp   status
+|_  100024  1          32768/udp   status
+139/tcp   open  netbios-ssn syn-ack Samba smbd (workgroup: MYGROUP)
+443/tcp   open  ssl/https   syn-ack Apache/1.3.20 (Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b
+|_http-server-header: Apache/1.3.20 (Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b
+|_ssl-date: 2022-03-25T00:04:10+00:00; +4h59m58s from scanner time.
+| ssl-cert: Subject: commonName=localhost.localdomain/organizationName=SomeOrganization/stateOrProvinceName=SomeState/countryName=--/organizationalUnitName=SomeOrganizationalUnit/emailAddress=root@localhost.localdomain/localityName=SomeCity
+| Issuer: commonName=localhost.localdomain/organizationName=SomeOrganization/stateOrProvinceName=SomeState/countryName=--/organizationalUnitName=SomeOrganizationalUnit/emailAddress=root@localhost.localdomain/localityName=SomeCity
+| Public Key type: rsa
+| Public Key bits: 1024
+| Signature Algorithm: md5WithRSAEncryption
+| Not valid before: 2009-09-26T09:32:06
+| Not valid after:  2010-09-26T09:32:06
+| MD5:   78ce 5293 4723 e7fe c28d 74ab 42d7 02f1
+| SHA-1: 9c42 91c3 bed2 a95b 983d 10ac f766 ecb9 8766 1d33
+| -----BEGIN CERTIFICATE-----
+| MIIEDDCCA3WgAwIBAgIBADANBgkqhkiG9w0BAQQFADCBuzELMAkGA1UEBhMCLS0x
+| EjAQBgNVBAgTCVNvbWVTdGF0ZTERMA8GA1UEBxMIU29tZUNpdHkxGTAXBgNVBAoT
+| EFNvbWVPcmdhbml6YXRpb24xHzAdBgNVBAsTFlNvbWVPcmdhbml6YXRpb25hbFVu
+| aXQxHjAcBgNVBAMTFWxvY2FsaG9zdC5sb2NhbGRvbWFpbjEpMCcGCSqGSIb3DQEJ
+| ARYacm9vdEBsb2NhbGhvc3QubG9jYWxkb21haW4wHhcNMDkwOTI2MDkzMjA2WhcN
+| MTAwOTI2MDkzMjA2WjCBuzELMAkGA1UEBhMCLS0xEjAQBgNVBAgTCVNvbWVTdGF0
+| ZTERMA8GA1UEBxMIU29tZUNpdHkxGTAXBgNVBAoTEFNvbWVPcmdhbml6YXRpb24x
+| HzAdBgNVBAsTFlNvbWVPcmdhbml6YXRpb25hbFVuaXQxHjAcBgNVBAMTFWxvY2Fs
+| aG9zdC5sb2NhbGRvbWFpbjEpMCcGCSqGSIb3DQEJARYacm9vdEBsb2NhbGhvc3Qu
+| bG9jYWxkb21haW4wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAM4BXiK5bWlS
+| ob4B6a9ALmKDbSxqoMcM3pvGHscFsJs+fHHn+CjU1DX44LPDNOwwOl6Uqb+GtZJv
+| 6juVetDwcTbbocC2BM+6x6gyV/H6aYuCssCwrOuVKWp7l9xVpadjITUmhh+uB81q
+| yqopt//Z4THww7SezLJQXi1+Grmp3iFDAgMBAAGjggEcMIIBGDAdBgNVHQ4EFgQU
+| 7OdRS0NrbNB8gE9qUjcw8LF8xKAwgegGA1UdIwSB4DCB3YAU7OdRS0NrbNB8gE9q
+| Ujcw8LF8xKChgcGkgb4wgbsxCzAJBgNVBAYTAi0tMRIwEAYDVQQIEwlTb21lU3Rh
+| dGUxETAPBgNVBAcTCFNvbWVDaXR5MRkwFwYDVQQKExBTb21lT3JnYW5pemF0aW9u
+| MR8wHQYDVQQLExZTb21lT3JnYW5pemF0aW9uYWxVbml0MR4wHAYDVQQDExVsb2Nh
+| bGhvc3QubG9jYWxkb21haW4xKTAnBgkqhkiG9w0BCQEWGnJvb3RAbG9jYWxob3N0
+| LmxvY2FsZG9tYWluggEAMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEEBQADgYEA
+| Vgrmpprfkmd8vy0E0UmZvWdIcDrIYRvUWcwSFwc6bGqJeJr0CYSB+jDQzA6Cu7nt
+| xjrlXxEjHFBBbF4iEMJDnuQTFGvICQIcrqJoH3lqAO73u4TeBDjhv5n+h+S37CHd
+| 1lvgRgoOay9dWaLKOyUThgKF2HcPWMZIj2froo5eihM=
+|_-----END CERTIFICATE-----
+| sslv2: 
+|   SSLv2 supported
+|   ciphers: 
+|     SSL2_RC4_64_WITH_MD5
+|     SSL2_RC4_128_EXPORT40_WITH_MD5
+|     SSL2_DES_192_EDE3_CBC_WITH_MD5
+|     SSL2_RC4_128_WITH_MD5
+|     SSL2_RC2_128_CBC_EXPORT40_WITH_MD5
+|     SSL2_RC2_128_CBC_WITH_MD5
+|_    SSL2_DES_64_CBC_WITH_MD5
+|_http-title: 400 Bad Request
+| http-methods: 
+|_  Supported Methods: GET HEAD POST
+32768/tcp open  status      syn-ack 1 (RPC #100024)
+
+Host script results:
+|_clock-skew: 4h59m57s
+|_smb2-security-mode: Couldn't establish a SMBv2 connection.
+|_smb2-time: Protocol negotiation failed (SMB2)
+| nbstat: NetBIOS name: KIOPTRIX, NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
+| Names:
+|   KIOPTRIX<00>         Flags: <unique><active>
+|   KIOPTRIX<03>         Flags: <unique><active>
+|   KIOPTRIX<20>         Flags: <unique><active>
+|   \x01\x02__MSBROWSE__\x02<01>  Flags: <group><active>
+|   MYGROUP<00>          Flags: <group><active>
+|   MYGROUP<1d>          Flags: <unique><active>
+|   MYGROUP<1e>          Flags: <group><active>
+| Statistics:
+|   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+|   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+|_  00 00 00 00 00 00 00 00 00 00 00 00 00 00
+| p2p-conficker: 
+|   Checking for Conficker.C or higher...
+|   Check 1 (port 31680/tcp): CLEAN (Couldn't connect)
+|   Check 2 (port 50849/tcp): CLEAN (Couldn't connect)
+|   Check 3 (port 42523/udp): CLEAN (Failed to receive data)
+|   Check 4 (port 9493/udp): CLEAN (Failed to receive data)
+|_  0/4 checks are positive: Host is CLEAN or ports are blocked
+
+NSE: Script Post-scanning.
+NSE: Starting runlevel 1 (of 3) scan.
+Initiating NSE at 12:04
+Completed NSE at 12:04, 0.00s elapsed
+NSE: Starting runlevel 2 (of 3) scan.
+Initiating NSE at 12:04
+Completed NSE at 12:04, 0.00s elapsed
+NSE: Starting runlevel 3 (of 3) scan.
+Initiating NSE at 12:04
+Completed NSE at 12:04, 0.00s elapsed
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 18.95 seconds
+

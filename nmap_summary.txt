@@ -1,0 +1,41 @@
+Host 192.168.0.100 has 30 open ports.
+Host 192.168.0.121 has 6 open ports.
+
+Nmap scan report for 192.168.0.100
+21/tcp    open  ftp          vsftpd 2.3.4
+22/tcp    open  ssh          OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
+23/tcp    open  telnet?
+25/tcp    open  smtp?
+53/tcp    open  domain       ISC BIND 9.4.2
+80/tcp    open  http         Apache httpd 2.2.8 ((Ubuntu) DAV/2)
+111/tcp   open  rpcbind      2 (RPC #100000)
+139/tcp   open  netbios-ssn  Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+445/tcp   open  netbios-ssn  Samba smbd 3.0.20-Debian (workgroup: WORKGROUP)
+512/tcp   open  exec?
+513/tcp   open  login?
+514/tcp   open  shell?
+1099/tcp  open  java-rmi     GNU Classpath grmiregistry
+1524/tcp  open  bindshell    Metasploitable root shell
+2049/tcp  open  nfs          2-4 (RPC #100003)
+2121/tcp  open  ccproxy-ftp?
+3306/tcp  open  mysql?
+3632/tcp  open  distccd      distccd v1 ((GNU) 4.2.4 (Ubuntu 4.2.4-1ubuntu4))
+5432/tcp  open  postgresql   PostgreSQL DB 8.3.0 - 8.3.7
+5900/tcp  open  vnc          VNC (protocol 3.3)
+6000/tcp  open  X11          (access denied)
+6667/tcp  open  irc          UnrealIRCd (Admin email admin@Metasploitable.LAN)
+6697/tcp  open  irc          UnrealIRCd
+8009/tcp  open  ajp13        Apache Jserv (Protocol v1.3)
+8180/tcp  open  http         Apache Tomcat/Coyote JSP engine 1.1
+8787/tcp  open  drb          Ruby DRb RMI (Ruby 1.8; path /usr/lib/ruby/1.8/drb)
+37500/tcp open  nlockmgr     1-4 (RPC #100021)
+39897/tcp open  java-rmi     GNU Classpath grmiregistry
+42349/tcp open  status       1 (RPC #100024)
+44588/tcp open  mountd       1-3 (RPC #100005)
+Nmap scan report for 192.168.0.121
+22/tcp    open  ssh         OpenSSH 2.9p2 (protocol 1.99)
+80/tcp    open  http        Apache httpd 1.3.20 ((Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b)
+111/tcp   open  rpcbind     2 (RPC #100000)
+139/tcp   open  netbios-ssn Samba smbd (workgroup: MYGROUP)
+443/tcp   open  ssl/https   Apache/1.3.20 (Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b
+32768/tcp open  status      1 (RPC #100024)

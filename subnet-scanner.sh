@@ -1,0 +1,218 @@
+#!/bin/bash
+
+# Define a help() function to help and guide the user in case of errors
+help()
+{
+        printf "\n\tUsage:\t./bash-scanner.sh A.B.C.D/E [-r] [-n] [-a] [-N] [-h]\n"
+        printf "\t\t\t[ -r | --rustscan ]\tperform rustscan scan\n"
+        printf "\t\t\t[ -n | --nmap ]\t\tperform nmap scan\n"
+        printf "\t\t\t[ -a | --all ]\t\tperform both rustscan AND nmap scans (default if no switch specified)\n"
+	printf "\t\t\t[ -N | --nping ]\toption to perform nping scan for hosts/subnets that may block ICMP,\n"
+	printf "\t\t\t\t\t\ta target port can be specified, 53 is used by default\n"
+	printf "\t\t\t\t\t\tNote: it can be slow on large subnets and is therefore excluded from the -a | --all option\n"
+        printf "\t\t\t[ -h | --help ]\n"
+        exit 2
+}
+
+# At least one subnet A.B.C.D/E argument must be passed in
+# If no argument (target subnet) and no options are provided, display the error and help messages
+ARG1=$1
+if [ -z "$ARG1" ]
+then
+	printf "\n\t[Error] No argument provided"
+	printf "\n\t[Error] At a minimum, a subnet A.B.C.D/E must be passed in as argument for the scan to start"
+	echo
+	help
+fi
+
+# Set defaults for default behaviour
+fpingFlag=true
+rustscanFlag=false
+nmapFlag=false
+allFlag=false
+npingFlag=false
+
+# Replace long arguments
+args=()
+for arg; do
+        case "$arg" in
+                --rustscan)     args+=( -r ) ;;
+                --nmap)         args+=( -n ) ;;
+                --all)          args+=( -a ) ;;
+		--nping)	args+=( -N ) ;;
+		--help)         args+=( -h ) ;;
+                *)              args+=( "$arg" ) ;;
+    esac
+done
+set -- "${args[@]}"
+
+# Handle positional arguments provided before switch options
+new_args=()
+while [ $OPTIND -le "$#" ]
+do
+	CURRENTARG=${!OPTIND}
+        if getopts ":rnahN" option
+        then
+                case $option
+                in
+                        r)	(( OPTIONCOUNT = OPTIONCOUNT + 1 ))
+                                rustscanFlag=true ;;
+                        n)	(( OPTIONCOUNT = OPTIONCOUNT + 1 ))
+                                nmapFlag=true ;;
+                        a)	(( OPTIONCOUNT = OPTIONCOUNT + 1 ))
+                                allFlag=true ;;
+			N)	(( OPTIONCOUNT = OPTIONCOUNT + 1 ))
+				npingFlag=true
+				# Check next positional parameter
+				eval nextopt=\${$OPTIND}
+				# existing or starting with dash?
+				if [[ -n $nextopt && $nextopt != -* ]] ; then
+					OPTIND=$((OPTIND + 1))
+					npingTargetPort=$nextopt
+				else
+					npingTargetPort=53
+				fi
+				;;
+			h)	help ;;
+                        *)	# Display help message if unsupported option is provided
+                                printf "\t[Error] Unsupported option: $CURRENTARG\n"
+                                help ;;
+                esac
+        else
+                new_args+=("${!OPTIND}")
+                ((OPTIND++))
+        fi
+done
+
+# Evaluate if there is at least one element (a target subnet A.B.C.D/E) left in new_args
+if [ ${#new_args[@]} = 0 ]
+then
+	printf "\n\t[Error] Only options were provided, but no subnet to scan"
+        printf "\n\t[Error] At a minimum, a subnet A.B.C.D/E must be passed in as argument for the scan to start"
+        echo
+        help
+fi
+
+# If neither -r nor -n options, then default to run both
+if  [ "${rustscanFlag}" = false ] && [ "${nmapFlag}" = false ]
+then
+        allFlag=true
+fi
+if [ "${allFlag}" = true ]
+then
+        rustscanFlag=true
+        nmapFlag=true
+fi
+
+############################################################################################################################
+
+printf "Started!\n\n"
+
+echo "***** Scanning ${new_args[0]} *****"
+echo
+
+SCANOPTIONNB=1
+
+printf "\t($SCANOPTIONNB) Running fping and saving output to ./fping.txt\n"
+fping -a -g ${new_args[0]} 2>/dev/null > fping.txt
+# One problem with fping is that it will include the scanning-host local IP address if that address belongs to the scanned subnet.
+# We want to remove it with the lines below:
+ip a | grep "inet " | cut -d " " -f 6 | cut -d "/" -f 1 | grep -vw "127.0.0.1" | while read LINE
+	do
+		cat ./fping.txt | grep -vw "$LINE" > temp && mv temp ./fping.txt
+	done
+
+printf "\t\tfping found $(wc -l ./fping.txt | cut -d " " -f 1) live host(s) at:\n"
+cat ./fping.txt | while read LINE
+	do
+		printf "\t\t\t$LINE\n"
+	done
+printf "\t($SCANOPTIONNB) fping complete!\n"
+echo
+
+cp ./fping.txt ./live_hosts.txt
+
+((SCANOPTIONNB++))
+
+if [ "${npingFlag}" = true ]
+then
+	printf "\t($SCANOPTIONNB) Running nping against target port ${npingTargetPort} and saving output to ./nping.txt\n"
+	printf "\tnping can be slow, especially on large subnets... please hang on for great findings!\n"
+	nping --tcp-connect ${new_args[0]} -p ${npingTargetPort} -c 1 | awk '/RCVD/ && /completed/ || /Connection refused/' | sed s/'Handshake with '// | sed s/'Possible TCP RST received from '// | cut -d ' ' -f 3 | cut -d ':' -f 1 | uniq > ./nping.txt
+	# Remove scanning host IP address from the results:
+	ip a | grep "inet " | cut -d " " -f 6 | cut -d "/" -f 1 | grep -vw "127.0.0.1" | while read LINE
+        	do
+	                cat ./nping.txt | grep -vw "$LINE" > temp && mv temp ./nping.txt
+	        done
+
+	printf "\t\tnping found $(wc -l ./nping.txt | cut -d " " -f 1) live host(s) at:\n"
+	cat ./nping.txt | while read LINE
+        	do
+	                printf "\t\t\t$LINE\n"
+	        done
+	# Merge ./nping.txt with ./fping.txt, remove duplicates and save to ./live_hosts.txt
+	cat ./nping.txt | while read LINE
+		do
+			echo "$LINE" >> ./live_hosts.txt
+		done
+	sort ./live_hosts.txt | uniq > temp && mv temp ./live_hosts.txt
+	printf "\t($SCANOPTIONNB) nping complete!\n"
+	echo
+	((SCANOPTIONNB++))
+fi
+
+if [ "${rustscanFlag}" = true ] || [ "${allFlag}" = true ]
+then
+	printf "\t($SCANOPTIONNB) Running command: rustscan -a ./live_hosts.txt -r 1-65535 --ulimit 5000 -- -A | tee ./rustscan.txt\n"
+	rustscan -a ./live_hosts.txt -r 1-65535 --ulimit 5000 -- -A | tee ./rustscan.txt
+	printf "\t($SCANOPTIONNB) rustscan complete!\n"
+	((SCANOPTIONNB++))
+	echo
+fi
+
+if [ "${nmapFlag}" = true ] || [ "${allFlag}" = true ]
+then
+	printf "\t($SCANOPTIONNB) Running command: nmap -Pn -sV -A -T4 -p- -iL ./live_hosts.txt -oN ./nmap.txt\n"
+	nmap -Pn -sV -A -T4 -p- -iL ./live_hosts.txt -oN ./nmap.txt
+	printf "\t($SCANOPTIONNB) nmap complete!\n"
+	((SCANOPTIONNB++))
+	echo
+fi
+
+printf "\t($SCANOPTIONNB) Creating summaries for rustscan and nmap\n"
+
+if [ "${rustscanFlag}" = true ] || [ "${allFlag}" = true ]
+then
+        printf "\t\tPreparing rustscan summary and saving to ./rustscan_summary.txt\n"
+	cat ./rustscan.txt | awk '/Open /' | sort | cut -d ' ' -f 2 > ./temp_rs.txt
+	cat ./temp_rs.txt | cut -d ':' -f 1 | sort | uniq > ./temp_rs_hosts.txt
+	cat ./temp_rs_hosts.txt | while read LINE
+		do
+			cat ./temp_rs.txt | grep "$LINE" | cut -d ':' -f 2 | sort -g | uniq > ./temp_rs_"$LINE"_ports.txt
+			echo "Host $LINE has $(wc -l ./temp_rs_${LINE}_ports.txt | cut -d " " -f 1) open ports:" >> ./rustscan_summary.txt
+			cat ./temp_rs_"$LINE"_ports.txt >> ./rustscan_summary.txt
+		done
+	rm ./temp_rs*
+	printf "\t\tRustscan summary ready!\n"
+        echo
+fi
+
+if [ "${nmapFlag}" = true ] || [ "${allFlag}" = true ]
+then
+        printf "\t\tPreparing nmap summary and saving to ./nmap_summary.txt\n"
+	cat ./nmap.txt | awk '/Nmap scan report for/ || /open/' > ./temp_ns.txt
+	awk 'function output() { print "Host", ip, "has", count, "open ports."; count=0 }
+	     /Nmap/ && count { output() }
+	     /Nmap/ { ip=$NF }
+	     /open/ { count++ }
+	END{ output() }' ./temp_ns.txt >> ./nmap_summary.txt
+	echo "" >> ./nmap_summary.txt
+	cat ./temp_ns.txt >> ./nmap_summary.txt
+	rm temp_ns*
+        printf "\t\tNmap summary ready!\n"
+        echo
+fi
+
+printf "\t($SCANOPTIONNB) Summaries for rustscan and nmap ready!\n"
+
+((SCANOPTIONNB++))
