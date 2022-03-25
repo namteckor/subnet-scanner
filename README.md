@@ -41,7 +41,7 @@ If only an nmap scan is desired (no rustscan), then use the -n (--nmap) command 
 &ensp;Same as previous example, but adds an nping scan on default target port 53 before rustscan. This can help discover hosts that may block ICMP and that would not otherwise be caught by fping. By comparing the ./fping.txt and the ./nping.txt files, we can see which hosts may be blocking ICMP.  
 
 &ensp;# ./subnet-scanner 192.168.0.0/25 -N 443  
-&ensp;Same as previous example, but specifies the target port for nping to use 443 (instead of default 53).  
+&ensp;Same as previous example, but specifies the target port to use for nping (443 instead of default 53).  
 
 &ensp;# ./subnet-scanner 192.168.0.0/25 -n
 &ensp;After fping, only run an nmap scan (no rustscan)  
