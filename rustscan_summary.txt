@@ -1,3 +1,4 @@
+OS detection results for host 192.168.0.100 -> OS: Linux 2.6.9 - 2.6.33
 Host 192.168.0.100 has 30 open ports:
 21
 22
@@ -25,10 +26,11 @@ Host 192.168.0.100 has 30 open ports:
 8009
 8180
 8787
-37500
-39897
-42349
-44588
+37245
+37819
+53333
+57589
+OS detection results for host 192.168.0.121 -> OS: Linux 2.4.9 - 2.4.18 (likely embedded)
 Host 192.168.0.121 has 6 open ports:
 22
 80

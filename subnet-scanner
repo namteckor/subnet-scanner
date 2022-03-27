@@ -3,7 +3,7 @@
 # Define a help() function to help and guide the user in case of errors
 help()
 {
-        printf "\n\tUsage:\t./bash-scanner.sh A.B.C.D/E [-r] [-n] [-a] [-N] [-h]\n"
+        printf "\n\tUsage:\tsudo ./bash-scanner.sh A.B.C.D/E [-r] [-n] [-a] [-N] [-h]\n"
         printf "\t\t\t[ -r | --rustscan ]\tperform rustscan scan\n"
         printf "\t\t\t[ -n | --nmap ]\t\tperform nmap scan\n"
         printf "\t\t\t[ -a | --all ]\t\tperform both rustscan AND nmap scans (default if no switch specified)\n"
@@ -106,15 +106,35 @@ fi
 
 ############################################################################################################################
 
-printf "Started!\n\n"
+dash="-"
+underscore="_"
+empty=""
+dot="."
+forwardSlash="/"
+space=" "
+colon=":"
 
-echo "***** Scanning ${new_args[0]} *****"
+timePrint="$(date)"
+
+timeNow="$(date +%F_%H:%M:%S)"
+timeSuffix1=$(echo "${timeNow//$colon/$empty}")
+timeSuffix=$(echo "-${timeSuffix1//$dash/$empty}")
+
+subnetEntry="${new_args[0]}"
+subnetSuffix1=$(echo "${subnetEntry//$dot/$dot}")
+subnetSuffix=$(echo "-${subnetSuffix1//$forwardSlash/$underscore}")
+
+printf "Started on $timePrint!\n\n"
+
+############################################################################################################################
+
+echo "***** Scanning $subnetEntry *****"
 echo
 
 SCANOPTIONNB=1
 
 printf "\t($SCANOPTIONNB) Running fping and saving output to ./fping.txt\n"
-fping -a -g ${new_args[0]} 2>/dev/null > fping.txt
+fping -a -g $subnetEntry 2>/dev/null > fping.txt
 # One problem with fping is that it will include the scanning-host local IP address if that address belongs to the scanned subnet.
 # We want to remove it with the lines below:
 ip a | grep "inet " | cut -d " " -f 6 | cut -d "/" -f 1 | grep -vw "127.0.0.1" | while read LINE
@@ -138,7 +158,7 @@ if [ "${npingFlag}" = true ]
 then
 	printf "\t($SCANOPTIONNB) Running nping against target port ${npingTargetPort} and saving output to ./nping.txt\n"
 	printf "\tnping can be slow, especially on large subnets... please hang on for great findings!\n"
-	nping --tcp-connect ${new_args[0]} -p ${npingTargetPort} -c 1 | awk '/RCVD/ && /completed/ || /Connection refused/' | sed s/'Handshake with '// | sed s/'Possible TCP RST received from '// | cut -d ' ' -f 3 | cut -d ':' -f 1 | uniq > ./nping.txt
+	nping --tcp-connect $subnetEntry -p ${npingTargetPort} -c 1 | awk '/RCVD/ && /completed/ || /Connection refused/' | sed s/'Handshake with '// | sed s/'Possible TCP RST received from '// | cut -d ' ' -f 3 | cut -d ':' -f 1 | uniq > ./nping.txt
 	# Remove scanning host IP address from the results:
 	ip a | grep "inet " | cut -d " " -f 6 | cut -d "/" -f 1 | grep -vw "127.0.0.1" | while read LINE
         	do
@@ -163,8 +183,11 @@ fi
 
 if [ "${rustscanFlag}" = true ] || [ "${allFlag}" = true ]
 then
-	printf "\t($SCANOPTIONNB) Running command: rustscan -a ./live_hosts.txt -r 1-65535 --ulimit 5000 -- -A | tee ./rustscan.txt\n"
-	rustscan -a ./live_hosts.txt -r 1-65535 --ulimit 5000 -- -A | tee ./rustscan.txt
+	# cleanup existing ./rustscan.oG and ./rustscan_summary.txt from previous scan
+	sudo rm ./rustscan.oG 2>/dev/null
+	sudo rm ./rustscan_summary.txt 2>/dev/null
+	printf "\t($SCANOPTIONNB) Running command: sudo rustscan -a ./live_hosts.txt -r 1-65535 --ulimit 5000 -- -A --append-output -oG ./rustscan.oG | tee ./rustscan.txt\n"
+	sudo rustscan -a ./live_hosts.txt -r 1-65535 --ulimit 5000 -- -A --append-output -oG ./rustscan.oG | tee ./rustscan.txt	
 	printf "\t($SCANOPTIONNB) rustscan complete!\n"
 	((SCANOPTIONNB++))
 	echo
@@ -172,8 +195,11 @@ fi
 
 if [ "${nmapFlag}" = true ] || [ "${allFlag}" = true ]
 then
-	printf "\t($SCANOPTIONNB) Running command: nmap -Pn -sV -A -T4 -p- -iL ./live_hosts.txt -oN ./nmap.txt\n"
-	nmap -Pn -sV -A -T4 -p- -iL ./live_hosts.txt -oN ./nmap.txt
+	# cleanup existing ./nmap.oG and ./nmap_summary.txt from previous scan
+        sudo rm ./nmap.oG 2>/dev/null
+        sudo rm ./nmap_summary.txt 2>/dev/null
+	printf "\t($SCANOPTIONNB) Running command: sudo nmap -Pn -sV -A -T4 -p- -iL ./live_hosts.txt -oN ./nmap.txt -oG nmap.oG\n"
+	sudo nmap -Pn -sV -A -T4 -p- -iL ./live_hosts.txt -oN ./nmap.txt -oG ./nmap.oG
 	printf "\t($SCANOPTIONNB) nmap complete!\n"
 	((SCANOPTIONNB++))
 	echo
@@ -188,11 +214,13 @@ then
 	cat ./temp_rs.txt | cut -d ':' -f 1 | sort | uniq > ./temp_rs_hosts.txt
 	cat ./temp_rs_hosts.txt | while read LINE
 		do
+			echo "OS detection results for host $LINE -> $(cat ./rustscan.oG | grep ${LINE} | grep OS | cut -d$'\t' -f 3)" >> ./rustscan_summary.txt
 			cat ./temp_rs.txt | grep "$LINE" | cut -d ':' -f 2 | sort -g | uniq > ./temp_rs_"$LINE"_ports.txt
 			echo "Host $LINE has $(wc -l ./temp_rs_${LINE}_ports.txt | cut -d " " -f 1) open ports:" >> ./rustscan_summary.txt
 			cat ./temp_rs_"$LINE"_ports.txt >> ./rustscan_summary.txt
 		done
 	rm ./temp_rs*
+	#rm ./rustscan.oG
 	printf "\t\tRustscan summary ready!\n"
         echo
 fi
@@ -201,6 +229,7 @@ if [ "${nmapFlag}" = true ] || [ "${allFlag}" = true ]
 then
         printf "\t\tPreparing nmap summary and saving to ./nmap_summary.txt\n"
 	cat ./nmap.txt | awk '/Nmap scan report for/ || /open/' > ./temp_ns.txt
+	cat ./nmap.oG | grep OS | cut -d$'\t' -f1,4-4 >> ./nmap_summary.txt
 	awk 'function output() { print "Host", ip, "has", count, "open ports."; count=0 }
 	     /Nmap/ && count { output() }
 	     /Nmap/ { ip=$NF }
@@ -209,6 +238,7 @@ then
 	echo "" >> ./nmap_summary.txt
 	cat ./temp_ns.txt >> ./nmap_summary.txt
 	rm temp_ns*
+	#rm ./nmap.oG
         printf "\t\tNmap summary ready!\n"
         echo
 fi

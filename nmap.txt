@@ -1,9 +1,10 @@
-# Nmap 7.92 scan initiated Thu Mar 24 12:04:12 2022 as: nmap -Pn -sV -A -T4 -p- -iL ./live_hosts.txt -oN ./nmap.txt
+# Nmap 7.92 scan initiated Sat Mar 26 17:05:13 2022 as: nmap -Pn -sV -A -T4 -p- -iL ./live_hosts.txt -oN ./nmap.txt -oG ./nmap.oG
 Nmap scan report for 192.168.0.100
-Host is up (0.0012s latency).
-Not shown: 65505 closed tcp ports (conn-refused)
+Host is up (0.00049s latency).
+Not shown: 65505 closed tcp ports (reset)
 PORT      STATE SERVICE      VERSION
 21/tcp    open  ftp          vsftpd 2.3.4
+|_ftp-anon: Anonymous FTP login allowed (FTP code 230)
 | ftp-syst: 
 |   STAT: 
 | FTP server status:
@@ -16,7 +17,6 @@ PORT      STATE SERVICE      VERSION
 |      Data connections will be plain text
 |      vsFTPd 2.3.4 - secure, fast, stable
 |_End of status
-|_ftp-anon: Anonymous FTP login allowed (FTP code 230)
 22/tcp    open  ssh          OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
 | ssh-hostkey: 
 |   1024 60:0f:cf:e1:c0:5f:6a:74:d6:90:24:fa:c4:d5:6c:cd (DSA)
@@ -28,8 +28,8 @@ PORT      STATE SERVICE      VERSION
 | dns-nsid: 
 |_  bind.version: 9.4.2
 80/tcp    open  http         Apache httpd 2.2.8 ((Ubuntu) DAV/2)
-|_http-title: Metasploitable2 - Linux
 |_http-server-header: Apache/2.2.8 (Ubuntu) DAV/2
+|_http-title: Metasploitable2 - Linux
 111/tcp   open  rpcbind      2 (RPC #100000)
 | rpcinfo: 
 |   program version    port/proto  service
@@ -37,12 +37,12 @@ PORT      STATE SERVICE      VERSION
 |   100000  2            111/udp   rpcbind
 |   100003  2,3,4       2049/tcp   nfs
 |   100003  2,3,4       2049/udp   nfs
-|   100005  1,2,3      44588/tcp   mountd
-|   100005  1,2,3      49855/udp   mountd
-|   100021  1,3,4      37500/tcp   nlockmgr
-|   100021  1,3,4      44983/udp   nlockmgr
-|   100024  1          42349/tcp   status
-|_  100024  1          53292/udp   status
+|   100005  1,2,3      32839/udp   mountd
+|   100005  1,2,3      37819/tcp   mountd
+|   100021  1,3,4      35455/udp   nlockmgr
+|   100021  1,3,4      37245/tcp   nlockmgr
+|   100024  1          45100/udp   status
+|_  100024  1          57589/tcp   status
 139/tcp   open  netbios-ssn  Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
 445/tcp   open  netbios-ssn  Samba smbd 3.0.20-Debian (workgroup: WORKGROUP)
 512/tcp   open  exec?
@@ -56,22 +56,22 @@ PORT      STATE SERVICE      VERSION
 |_tls-nextprotoneg: ERROR: Script execution failed (use -d to debug)
 |_ssl-date: ERROR: Script execution failed (use -d to debug)
 |_ssl-cert: ERROR: Script execution failed (use -d to debug)
+|_mysql-info: ERROR: Script execution failed (use -d to debug)
 |_tls-alpn: ERROR: Script execution failed (use -d to debug)
 |_sslv2: ERROR: Script execution failed (use -d to debug)
-|_mysql-info: ERROR: Script execution failed (use -d to debug)
 3632/tcp  open  distccd      distccd v1 ((GNU) 4.2.4 (Ubuntu 4.2.4-1ubuntu4))
 5432/tcp  open  postgresql   PostgreSQL DB 8.3.0 - 8.3.7
-|_ssl-date: 2022-03-24T19:08:54+00:00; -2s from scanner time.
 | ssl-cert: Subject: commonName=ubuntu804-base.localdomain/organizationName=OCOSA/stateOrProvinceName=There is no such thing outside US/countryName=XX
 | Not valid before: 2010-03-17T14:07:45
 |_Not valid after:  2010-04-16T14:07:45
+|_ssl-date: 2022-03-27T00:09:34+00:00; -1s from scanner time.
 5900/tcp  open  vnc          VNC (protocol 3.3)
 | vnc-info: 
 |   Protocol version: 3.3
 |   Security types: 
 |_    VNC Authentication (2)
 6000/tcp  open  X11          (access denied)
-6667/tcp  open  irc          UnrealIRCd (Admin email admin@Metasploitable.LAN)
+6667/tcp  open  irc          UnrealIRCd
 6697/tcp  open  irc          UnrealIRCd
 8009/tcp  open  ajp13        Apache Jserv (Protocol v1.3)
 |_ajp-methods: Failed to get a valid response for the OPTION request
@@ -79,44 +79,54 @@ PORT      STATE SERVICE      VERSION
 |_http-favicon: Apache Tomcat
 |_http-title: Apache Tomcat/5.5
 8787/tcp  open  drb          Ruby DRb RMI (Ruby 1.8; path /usr/lib/ruby/1.8/drb)
-37500/tcp open  nlockmgr     1-4 (RPC #100021)
-39897/tcp open  java-rmi     GNU Classpath grmiregistry
-42349/tcp open  status       1 (RPC #100024)
-44588/tcp open  mountd       1-3 (RPC #100005)
+37245/tcp open  nlockmgr     1-4 (RPC #100021)
+37819/tcp open  mountd       1-3 (RPC #100005)
+53333/tcp open  java-rmi     GNU Classpath grmiregistry
+57589/tcp open  status       1 (RPC #100024)
+MAC Address: 08:00:27:1D:2F:6C (Oracle VirtualBox virtual NIC)
+Device type: general purpose
+Running: Linux 2.6.X
+OS CPE: cpe:/o:linux:linux_kernel:2.6
+OS details: Linux 2.6.9 - 2.6.33
+Network Distance: 1 hop
 Service Info: Host: irc.Metasploitable.LAN; OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
 
 Host script results:
+|_clock-skew: mean: 1h19m59s, deviation: 2h18m34s, median: -1s
+|_nbstat: NetBIOS name: METASPLOITABLE, NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
 | smb-security-mode: 
-|   account_used: <blank>
+|   account_used: guest
 |   authentication_level: user
 |   challenge_response: supported
 |_  message_signing: disabled (dangerous, but default)
-|_clock-skew: mean: 1h19m59s, deviation: 2h18m35s, median: -1s
-|_nbstat: NetBIOS name: METASPLOITABLE, NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
+|_smb2-time: Protocol negotiation failed (SMB2)
 | smb-os-discovery: 
 |   OS: Unix (Samba 3.0.20-Debian)
 |   Computer name: metasploitable
 |   NetBIOS computer name: 
 |   Domain name: localdomain
 |   FQDN: metasploitable.localdomain
-|_  System time: 2022-03-24T15:07:09-04:00
-|_smb2-time: Protocol negotiation failed (SMB2)
+|_  System time: 2022-03-26T20:08:03-04:00
+
+TRACEROUTE
+HOP RTT     ADDRESS
+1   0.50 ms 192.168.0.100
 
 Nmap scan report for 192.168.0.121
-Host is up (0.00056s latency).
-Not shown: 65529 closed tcp ports (conn-refused)
+Host is up (0.00048s latency).
+Not shown: 65529 closed tcp ports (reset)
 PORT      STATE SERVICE     VERSION
 22/tcp    open  ssh         OpenSSH 2.9p2 (protocol 1.99)
+|_sshv1: Server supports SSHv1
 | ssh-hostkey: 
 |   1024 b8:74:6c:db:fd:8b:e6:66:e9:2a:2b:df:5e:6f:64:86 (RSA1)
 |   1024 8f:8e:5b:81:ed:21:ab:c1:80:e1:57:a3:3c:85:c4:71 (DSA)
 |_  1024 ed:4e:a9:4a:06:14:ff:15:14:ce:da:3a:80:db:e2:81 (RSA)
-|_sshv1: Server supports SSHv1
 80/tcp    open  http        Apache httpd 1.3.20 ((Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b)
 |_http-title: Test Page for the Apache Web Server on Red Hat Linux
+|_http-server-header: Apache/1.3.20 (Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b
 | http-methods: 
 |_  Potentially risky methods: TRACE
-|_http-server-header: Apache/1.3.20 (Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b
 111/tcp   open  rpcbind     2 (RPC #100000)
 | rpcinfo: 
 |   program version    port/proto  service
@@ -126,28 +136,38 @@ PORT      STATE SERVICE     VERSION
 |_  100024  1          32768/udp   status
 139/tcp   open  netbios-ssn Samba smbd (workgroup: MYGROUP)
 443/tcp   open  ssl/https   Apache/1.3.20 (Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b
-|_http-title: 400 Bad Request
-| ssl-cert: Subject: commonName=localhost.localdomain/organizationName=SomeOrganization/stateOrProvinceName=SomeState/countryName=--
-| Not valid before: 2009-09-26T09:32:06
-|_Not valid after:  2010-09-26T09:32:06
-|_ssl-date: 2022-03-25T00:08:33+00:00; +4h59m58s from scanner time.
+|_ssl-date: 2022-03-27T05:09:35+00:00; +4h59m58s from scanner time.
 |_http-server-header: Apache/1.3.20 (Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b
+|_http-title: 400 Bad Request
 | sslv2: 
 |   SSLv2 supported
 |   ciphers: 
 |     SSL2_DES_192_EDE3_CBC_WITH_MD5
-|     SSL2_RC4_64_WITH_MD5
-|     SSL2_DES_64_CBC_WITH_MD5
 |     SSL2_RC4_128_EXPORT40_WITH_MD5
-|     SSL2_RC2_128_CBC_WITH_MD5
+|     SSL2_RC4_128_WITH_MD5
+|     SSL2_DES_64_CBC_WITH_MD5
+|     SSL2_RC4_64_WITH_MD5
 |     SSL2_RC2_128_CBC_EXPORT40_WITH_MD5
-|_    SSL2_RC4_128_WITH_MD5
+|_    SSL2_RC2_128_CBC_WITH_MD5
+| ssl-cert: Subject: commonName=localhost.localdomain/organizationName=SomeOrganization/stateOrProvinceName=SomeState/countryName=--
+| Not valid before: 2009-09-26T09:32:06
+|_Not valid after:  2010-09-26T09:32:06
 32768/tcp open  status      1 (RPC #100024)
+MAC Address: 08:00:27:C3:EC:2B (Oracle VirtualBox virtual NIC)
+Device type: general purpose
+Running: Linux 2.4.X
+OS CPE: cpe:/o:linux:linux_kernel:2.4
+OS details: Linux 2.4.9 - 2.4.18 (likely embedded)
+Network Distance: 1 hop
 
 Host script results:
-|_smb2-time: Protocol negotiation failed (SMB2)
 |_nbstat: NetBIOS name: KIOPTRIX, NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
 |_clock-skew: 4h59m57s
+|_smb2-time: Protocol negotiation failed (SMB2)
 
-Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-# Nmap done at Thu Mar 24 12:09:30 2022 -- 2 IP addresses (2 hosts up) scanned in 317.88 seconds
+TRACEROUTE
+HOP RTT     ADDRESS
+1   0.48 ms 192.168.0.121
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Mar 26 17:10:31 2022 -- 2 IP addresses (2 hosts up) scanned in 318.37 seconds
