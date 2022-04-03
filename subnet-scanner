@@ -3,7 +3,7 @@
 # Define a help() function to help and guide the user in case of errors
 help()
 {
-        printf "\n\tUsage:\tsudo ./subnet-scanner.sh A.B.C.D/E [-r] [-n] [-a] [-N] [-h]\n"
+        printf "\n\tUsage:\tsudo ./subnet-scanner A.B.C.D/E [-r] [-n] [-a] [-N] [-h]\n"
         printf "\t\t\t[ -r | --rustscan ]\tperform rustscan scan\n"
         printf "\t\t\t[ -n | --nmap ]\t\tperform nmap scan\n"
         printf "\t\t\t[ -a | --all ]\t\tperform both rustscan AND nmap scans (default if no switch specified)\n"
