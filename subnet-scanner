@@ -3,7 +3,7 @@
 # Define a help() function to help and guide the user in case of errors
 help()
 {
-        printf "\n\tUsage:\tsudo ./bash-scanner.sh A.B.C.D/E [-r] [-n] [-a] [-N] [-h]\n"
+        printf "\n\tUsage:\tsudo ./subnet-scanner.sh A.B.C.D/E [-r] [-n] [-a] [-N] [-h]\n"
         printf "\t\t\t[ -r | --rustscan ]\tperform rustscan scan\n"
         printf "\t\t\t[ -n | --nmap ]\t\tperform nmap scan\n"
         printf "\t\t\t[ -a | --all ]\t\tperform both rustscan AND nmap scans (default if no switch specified)\n"
@@ -228,7 +228,7 @@ fi
 if [ "${nmapFlag}" = true ] || [ "${allFlag}" = true ]
 then
         printf "\t\tPreparing nmap summary and saving to ./nmap_summary.txt\n"
-	cat ./nmap.txt | awk '/Nmap scan report for/ || /open/' > ./temp_ns.txt
+	cat ./nmap.txt | awk '/Nmap scan report for/ || (/open/ && ( /tcp/ || /udp/) )' > ./temp_ns.txt
 	cat ./nmap.oG | grep OS | cut -d$'\t' -f1,4-4 >> ./nmap_summary.txt
 	awk 'function output() { print "Host", ip, "has", count, "open ports."; count=0 }
 	     /Nmap/ && count { output() }
