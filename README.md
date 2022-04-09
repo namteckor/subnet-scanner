@@ -6,6 +6,9 @@ The .txt and .oG (nmap grepable output) files added to the repo are examples of 
 
 **Only use on networks that you own and have explicit authorization to scan!**  
 
+## Disclaimer
+Users take full responsibility for any actions performed using this tool.  The author accepts no liability for damage caused by this tool.  If these terms are not acceptable to you, then do not use this tool.  
+
 ## Usage  
 &ensp;# sudo ./subnet-scanner A.B.C.D/E [-r] [-n] [-a] [-N] [-h]  
 &ensp;&ensp;[ -r | --rustscan ] perform rustscan scan  
