@@ -10,12 +10,14 @@ The .txt and .oG (nmap grepable output) files added to the repo are examples of 
 Users take full responsibility for any actions performed using this tool.  The author accepts no liability for damage caused by this tool.  If these terms are not acceptable to you, then do not use this tool.  
 
 ## Usage  
-&ensp;# sudo ./subnet-scanner A.B.C.D/E [-r] [-n] [-a] [-N] [-h]  
-&ensp;&ensp;[ -r | --rustscan ] perform rustscan scan  
-&ensp;&ensp;[ -n | --nmap ] perform nmap scan  
-&ensp;&ensp;[ -a | --all ] perform both rustscan AND nmap scans (default if no switch specified)  
-&ensp;&ensp;[ -N | --nping ] option to perform nping scan for hosts/subnets that may block ICMP, a target port can be specified, 53 is used by default  
-&ensp;&ensp;[ -h | --help ]  
+```text
+# sudo ./subnet-scanner A.B.C.D/E [-r] [-n] [-a] [-N] [-h]  
+	[ -r | --rustscan ] perform rustscan scan  
+	[ -n | --nmap ] perform nmap scan  
+	[ -a | --all ] perform both rustscan AND nmap scans (this is the default if no switch specified)  
+	[ -N | --nping ] option to perform nping scan for hosts/subnets that may block ICMP, a target port can be specified, 53 is used by default  
+	[ -h | --help ]  
+```
 
 Notes:  
 * Run with sudo/root privileges so that nmap can perform OS detection by using the -A switch  
