@@ -42,20 +42,31 @@ subnet-scanner supports running an [nmap](https://nmap.org/) scan on the discove
 If only an nmap scan is desired (no rustscan), then use the -n (--nmap) command switch. 
 
 ## Examples
-&ensp;# sudo ./subnet-scanner 192.168.0.0/25  
+```text
+	# sudo ./subnet-scanner 192.168.0.0/25  
+```
 &ensp;Discover and scan the 192.168.0.0/25 subnet using all default settings: fping, rustscan and nmap scans.  
 &ensp;Equivalent to commands:  
-&ensp;&ensp;# sudo ./subnet-scanner 192.168.0.0/25 -a  
-&ensp;&ensp;# sudo ./subnet-scanner 192.168.0.0/25 -n -r  
-
-&ensp;# sudo ./subnet-scanner 192.168.0.0/25 -N  
+```text
+	# sudo ./subnet-scanner 192.168.0.0/25 -a  
+	# sudo ./subnet-scanner 192.168.0.0/25 -n -r  
+```
+```text
+	# sudo ./subnet-scanner 192.168.0.0/25 -N  
+```	
 &ensp;Same as previous example, but adds an nping scan on default target port 53 before rustscan. This can help discover hosts that may block ICMP and that would not otherwise be caught by fping. By comparing the ./fping.txt and the ./nping.txt files, we can see which hosts may be blocking ICMP.  
 
-&ensp;# sudo ./subnet-scanner 192.168.0.0/25 -N 443  
+```text
+	# sudo ./subnet-scanner 192.168.0.0/25 -N 443  
+```
 &ensp;Same as previous example, but specifies the target port to use for nping (443 instead of default 53).  
 
-&ensp;# sudo ./subnet-scanner 192.168.0.0/25 -n  
-&ensp;After fping, only run an nmap scan (no rustscan).  
+```text
+	# sudo ./subnet-scanner 192.168.0.0/25 -n  
+```	
+&ensp;After fping, only run an nmap scan (-n), no rustscan.  
 
-&ensp;# sudo ./subnet-scanner 192.168.0.0/25 -r -N  
-&ensp;After fping, run nping on default target port 53 and only run a rustscan scan (no nmap).
+```text
+	# sudo ./subnet-scanner 192.168.0.0/25 -r -N  
+```	
+&ensp;After fping, run nping on default target port 53 (-N) and only run a rustscan scan (-r), no nmap.
