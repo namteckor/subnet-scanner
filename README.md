@@ -1,8 +1,8 @@
 # subnet-scanner
-Bash script to automate initial host discovery and port scanning using a combination of fping, nping, nmap and rustscan.  
-fping, nmap, nping and rustscan must be installed as pre-requisites to use subnet-scanner.  
+Bash script to automate initial host discovery and port scanning using a combination of fping, nping, nmap and rustscan (goscan as an option).  
+fping, nmap, nping, rustscan and goscan must be installed as pre-requisites to use subnet-scanner.  
 
-The .txt and .oG (nmap grepable output) files added to the repo are examples of results with subnet-scanner ran against a Metasploitable 2 VM (192.168.0.100) blocking ICMP and a VulnHub's Kioptrix VM (192.168.0.121) allowing ICMP.  
+The .txt and .oG (nmap grepable output) files added to the repo are examples of results with subnet-scanner ran against a Metasploitable 2 VM (192.168.0.100) blocking ICMP and a VulnHub's Kioptrix VM (192.168.0.121) allowing ICMP. The goscan.txt example was ran against HTB Chatterbox.  
 
 **Only use on networks that you own and have explicit authorization to scan!**  
 
@@ -15,6 +15,7 @@ Users take full responsibility for any actions performed using this tool.  The a
 	[ -r | --rustscan ] perform rustscan scan  
 	[ -n | --nmap ] perform nmap scan  
 	[ -a | --all ] perform both rustscan AND nmap scans (this is the default if no switch specified)  
+	[ -g | --goscan] perform an optional goscan scan
 	[ -N | --nping ] option to perform nping scan for hosts/subnets that may block ICMP, a target port can be specified, 53 is used by default  
 	[ -h | --help ]  
 ```
@@ -33,6 +34,10 @@ If only fping is run (no nping), the content of ./fping.txt is copied to ./live_
 In cases where ICMP is blocked, subnet-scanner has the optional -N (--nping) command switch to run an additional TCP probe [nping](https://nmap.org/nping/) scan, using target port 53 by default (none specified) or the specified one.  
 Hosts discovered by nping will be listed in ./nping.txt.
 When both fping AND nping (-N | --nping) scans are run, the contents of ./fping.txt and ./nping.txt are merged into ./live_hosts.txt with duplicate host entries removed.  
+
+## goscan  
+The [goscan](https://github.com/sdcampbell/goscan) scan is optional (not run and not included by default). It will be run first when the -g (--goscan) switch is provided and scan for all TCP ports.  
+
 ## rustscan
 subnet-scanner supports running a [rustscan](https://rustscan.github.io/RustScan/) scan on the discovered ./live_hosts.txt file, scanning for all 65535 ports, storing the detailed results into ./rustscan.txt and the summary results into ./rustscan_summary.txt (and ./rustscan.oG).  
 If only a rustscan scan is desired (no nmap), then use the -r (--rustscan) command switch.  
