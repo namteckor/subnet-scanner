@@ -3,15 +3,16 @@
 # Define a help() function to help and guide the user in case of errors
 help()
 {
-        printf "\n\tUsage:\tsudo ./subnet-scanner A.B.C.D/E [-r] [-n] [-a] [-N] [-h]\n"
-        printf "\t\t\t[ -r | --rustscan ]\tperform rustscan scan\n"
-        printf "\t\t\t[ -n | --nmap ]\t\tperform nmap scan\n"
-        printf "\t\t\t[ -a | --all ]\t\tperform both rustscan AND nmap scans (default if no switch specified)\n"
-	printf "\t\t\t[ -N | --nping ]\toption to perform nping scan for hosts/subnets that may block ICMP,\n"
-	printf "\t\t\t\t\t\ta target port can be specified, 53 is used by default\n"
-	printf "\t\t\t\t\t\tNote: it can be slow on large subnets and is therefore excluded from the -a | --all option\n"
-        printf "\t\t\t[ -h | --help ]\n"
-        exit 2
+		printf "\n\tUsage:\tsudo ./subnet-scanner A.B.C.D/E [-r] [-n] [-a] [-g] [-N] [-h]\n"
+		printf "\t\t\t[ -r | --rustscan ]\tperform rustscan scan\n"
+		printf "\t\t\t[ -n | --nmap ]\t\tperform nmap scan\n"
+		printf "\t\t\t[ -a | --all ]\t\tperform both rustscan AND nmap scans (default if no switch specified)\n"
+		printf "\t\t\t[ -g | --goscan ]\tperform an optional goscan scan\n"
+		printf "\t\t\t[ -N | --nping ]\toption to perform nping scan for hosts/subnets that may block ICMP,\n"
+		printf "\t\t\t\t\t\ta target port can be specified, 53 is used by default\n"
+		printf "\t\t\t\t\t\tNote: it can be slow on large subnets and is therefore excluded from the -a | --all option\n"		
+		printf "\t\t\t[ -h | --help ]\n"
+		exit 2
 }
 
 # At least one subnet A.B.C.D/E argument must be passed in
@@ -31,17 +32,19 @@ rustscanFlag=false
 nmapFlag=false
 allFlag=false
 npingFlag=false
+goscanFlag=false
 
 # Replace long arguments
 args=()
 for arg; do
-        case "$arg" in
-                --rustscan)     args+=( -r ) ;;
-                --nmap)         args+=( -n ) ;;
-                --all)          args+=( -a ) ;;
-		--nping)	args+=( -N ) ;;
-		--help)         args+=( -h ) ;;
-                *)              args+=( "$arg" ) ;;
+		case "$arg" in
+				--rustscan)		args+=( -r ) ;;
+				--nmap)			args+=( -n ) ;;
+				--all)			args+=( -a ) ;;
+				--goscan)		args+=( -g ) ;;
+				--nping)		args+=( -N ) ;;
+				--help)			args+=( -h ) ;;
+                *)				args+=( "$arg" ) ;;
     esac
 done
 set -- "${args[@]}"
@@ -51,57 +54,59 @@ new_args=()
 while [ $OPTIND -le "$#" ]
 do
 	CURRENTARG=${!OPTIND}
-        if getopts ":rnahN" option
-        then
-                case $option
-                in
-                        r)	(( OPTIONCOUNT = OPTIONCOUNT + 1 ))
-                                rustscanFlag=true ;;
-                        n)	(( OPTIONCOUNT = OPTIONCOUNT + 1 ))
-                                nmapFlag=true ;;
-                        a)	(( OPTIONCOUNT = OPTIONCOUNT + 1 ))
-                                allFlag=true ;;
-			N)	(( OPTIONCOUNT = OPTIONCOUNT + 1 ))
-				npingFlag=true
-				# Check next positional parameter
-				eval nextopt=\${$OPTIND}
-				# existing or starting with dash?
-				if [[ -n $nextopt && $nextopt != -* ]] ; then
-					OPTIND=$((OPTIND + 1))
-					npingTargetPort=$nextopt
-				else
-					npingTargetPort=53
-				fi
-				;;
-			h)	help ;;
-                        *)	# Display help message if unsupported option is provided
-                                printf "\t[Error] Unsupported option: $CURRENTARG\n"
-                                help ;;
+		if getopts ":rnaghN" option
+		then
+				case $option
+				in
+						r)	(( OPTIONCOUNT = OPTIONCOUNT + 1 ))
+								rustscanFlag=true ;;
+						n)	(( OPTIONCOUNT = OPTIONCOUNT + 1 ))
+								nmapFlag=true ;;
+						a)	(( OPTIONCOUNT = OPTIONCOUNT + 1 ))
+								allFlag=true ;;
+						g)	(( OPTIONCOUNT = OPTIONCOUNT + 1 ))
+								goscanFlag=true ;;
+						N)	(( OPTIONCOUNT = OPTIONCOUNT + 1 ))
+								npingFlag=true
+								# Check next positional parameter
+								eval nextopt=\${$OPTIND}
+								# existing or starting with dash?
+								if [[ -n $nextopt && $nextopt != -* ]] ; then
+									OPTIND=$((OPTIND + 1))
+									npingTargetPort=$nextopt
+								else
+									npingTargetPort=53
+								fi
+						;;
+						h)	help ;;
+								*)	# Display help message if unsupported option is provided
+								printf "\t[Error] Unsupported option: $CURRENTARG\n"
+								help ;;
                 esac
-        else
-                new_args+=("${!OPTIND}")
-                ((OPTIND++))
-        fi
+		else
+				new_args+=("${!OPTIND}")
+				((OPTIND++))
+		fi
 done
 
 # Evaluate if there is at least one element (a target subnet A.B.C.D/E) left in new_args
 if [ ${#new_args[@]} = 0 ]
 then
 	printf "\n\t[Error] Only options were provided, but no subnet to scan"
-        printf "\n\t[Error] At a minimum, a subnet A.B.C.D/E must be passed in as argument for the scan to start"
-        echo
-        help
+	printf "\n\t[Error] At a minimum, a subnet A.B.C.D/E must be passed in as argument for the scan to start"
+	echo
+	help
 fi
 
 # If neither -r nor -n options, then default to run both
-if  [ "${rustscanFlag}" = false ] && [ "${nmapFlag}" = false ]
+if  [ "${rustscanFlag}" = false ] && [ "${nmapFlag}" = false ] && [ "${goscanFlag}" = false ]
 then
-        allFlag=true
+	allFlag=true
 fi
 if [ "${allFlag}" = true ]
 then
-        rustscanFlag=true
-        nmapFlag=true
+	rustscanFlag=true
+	nmapFlag=true
 fi
 
 ############################################################################################################################
@@ -161,15 +166,15 @@ then
 	nping --tcp-connect $subnetEntry -p ${npingTargetPort} -c 1 | awk '/RCVD/ && /completed/ || /Connection refused/' | sed s/'Handshake with '// | sed s/'Possible TCP RST received from '// | cut -d ' ' -f 3 | cut -d ':' -f 1 | uniq > ./nping.txt
 	# Remove scanning host IP address from the results:
 	ip a | grep "inet " | cut -d " " -f 6 | cut -d "/" -f 1 | grep -vw "127.0.0.1" | while read LINE
-        	do
-	                cat ./nping.txt | grep -vw "$LINE" > temp && mv temp ./nping.txt
-	        done
+			do
+					cat ./nping.txt | grep -vw "$LINE" > temp && mv temp ./nping.txt
+			done
 
 	printf "\t\tnping found $(wc -l ./nping.txt | cut -d " " -f 1) live host(s) at:\n"
 	cat ./nping.txt | while read LINE
-        	do
-	                printf "\t\t\t$LINE\n"
-	        done
+			do
+					printf "\t\t\t$LINE\n"
+			done
 	# Merge ./nping.txt with ./fping.txt, remove duplicates and save to ./live_hosts.txt
 	cat ./nping.txt | while read LINE
 		do
@@ -179,6 +184,26 @@ then
 	printf "\t($SCANOPTIONNB) nping complete!\n"
 	echo
 	((SCANOPTIONNB++))
+fi
+
+if [ "${goscanFlag}" = true ] #|| [ "${allFlag}" = true ]
+then
+	# cleanup existing ./goscan.txt from previous scan
+	sudo rm ./goscan.txt 2>/dev/null
+	touch ./goscan.txt
+	cat ./live_hosts.txt | while read LINE
+		do
+			printf "\t($SCANOPTIONNB) Running command: goscan -target $LINE --all-ports | tee ./goscan_temp.txt\n"
+			goscan -target $LINE --all-ports | tee ./goscan_temp.txt
+			cat ./goscan_temp.txt | while read NEWLINE
+			do
+				echo $NEWLINE >> ./goscan.txt
+			done
+			sudo rm ./goscan_temp.txt
+		done
+	printf "\t($SCANOPTIONNB) goscan complete!\n"
+	((SCANOPTIONNB++))
+	echo
 fi
 
 if [ "${rustscanFlag}" = true ] || [ "${allFlag}" = true ]
@@ -196,8 +221,8 @@ fi
 if [ "${nmapFlag}" = true ] || [ "${allFlag}" = true ]
 then
 	# cleanup existing ./nmap.oG and ./nmap_summary.txt from previous scan
-        sudo rm ./nmap.oG 2>/dev/null
-        sudo rm ./nmap_summary.txt 2>/dev/null
+	sudo rm ./nmap.oG 2>/dev/null
+	sudo rm ./nmap_summary.txt 2>/dev/null
 	printf "\t($SCANOPTIONNB) Running command: sudo nmap -Pn -sV -A -T4 -p- -iL ./live_hosts.txt -oN ./nmap.txt -oG nmap.oG\n"
 	sudo nmap -Pn -sV -A -T4 -p- -iL ./live_hosts.txt -oN ./nmap.txt -oG ./nmap.oG
 	printf "\t($SCANOPTIONNB) nmap complete!\n"
@@ -209,7 +234,7 @@ printf "\t($SCANOPTIONNB) Creating summaries for rustscan and nmap\n"
 
 if [ "${rustscanFlag}" = true ] || [ "${allFlag}" = true ]
 then
-        printf "\t\tPreparing rustscan summary and saving to ./rustscan_summary.txt\n"
+	printf "\t\tPreparing rustscan summary and saving to ./rustscan_summary.txt\n"
 	cat ./rustscan.txt | awk '/Open /' | sort | cut -d ' ' -f 2 > ./temp_rs.txt
 	cat ./temp_rs.txt | cut -d ':' -f 1 | sort | uniq > ./temp_rs_hosts.txt
 	cat ./temp_rs_hosts.txt | while read LINE
@@ -222,25 +247,25 @@ then
 	rm ./temp_rs*
 	#rm ./rustscan.oG
 	printf "\t\tRustscan summary ready!\n"
-        echo
+	echo
 fi
 
 if [ "${nmapFlag}" = true ] || [ "${allFlag}" = true ]
 then
-        printf "\t\tPreparing nmap summary and saving to ./nmap_summary.txt\n"
+	printf "\t\tPreparing nmap summary and saving to ./nmap_summary.txt\n"
 	cat ./nmap.txt | awk '/Nmap scan report for/ || (/open/ && ( /tcp/ || /udp/) )' > ./temp_ns.txt
 	cat ./nmap.oG | grep OS | cut -d$'\t' -f1,4-4 >> ./nmap_summary.txt
 	awk 'function output() { print "Host", ip, "has", count, "open ports."; count=0 }
-	     /Nmap/ && count { output() }
-	     /Nmap/ { ip=$NF }
-	     /open/ { count++ }
+		/Nmap/ && count { output() }
+		/Nmap/ { ip=$NF }
+		/open/ { count++ }
 	END{ output() }' ./temp_ns.txt >> ./nmap_summary.txt
 	echo "" >> ./nmap_summary.txt
 	cat ./temp_ns.txt >> ./nmap_summary.txt
 	rm temp_ns*
 	#rm ./nmap.oG
-        printf "\t\tNmap summary ready!\n"
-        echo
+	printf "\t\tNmap summary ready!\n"
+	echo
 fi
 
 printf "\t($SCANOPTIONNB) Summaries for rustscan and nmap ready!\n"
