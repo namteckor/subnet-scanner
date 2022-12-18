@@ -27,7 +27,7 @@ Notes:
 * To scan a single host, use the /32 prefix length, ex: 10.0.1.111/32, 192.168.5.35/32, etc.  
 
 ## fping
-subnet-scanner will always start by running [fping](https://fping.org/) to discover responsive hosts on the specified subnet.  
+Unless the -f (--force) switch is specified, subnet-scanner will always start by running [fping](https://fping.org/) to discover responsive hosts on the specified subnet (responsive to ICMP).  
 Hosts discovered by fping will be listed in ./fping.txt.  
 If only fping is run (no nping), the content of ./fping.txt is copied to ./live_hosts.txt.  
 
