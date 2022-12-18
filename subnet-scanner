@@ -217,8 +217,7 @@ then
 			# goscan does not seem to work when a /32 target is specified
 			# so we add this step to handle this special case
 			# since /32 is a single host target, remove the /32 suffix and just keep the IP address part
-			if [ grep -q "/32" <<< $LINE ]
-			then
+			if grep -q "/32" <<< $LINE; then
   				printf "\t\t... found /32 target '$LINE' for goscan, removing subnet mask suffix ...\n"
 				LINECLEAN=${LINE%"/32"}
 				printf "\t\t... to force goscan on single host target: $LINECLEAN\n\n"
