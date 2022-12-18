@@ -3,7 +3,8 @@
 # Define a help() function to help and guide the user in case of errors
 help()
 {
-		printf "\n\tUsage:\tsudo ./subnet-scanner A.B.C.D/E [-r] [-n] [-a] [-g] [-N] [-h]\n"
+		printf "\n\tUsage:\tsudo ./subnet-scanner A.B.C.D/E [-f] [-r] [-n] [-a] [-g] [-N] [-h]\n"
+		printf "\t\t\t[ -f | --force ]\tforce the scan on the target host or target subnet by skipping the fping discovery step (use with -N when ICMP is likely blocked)\n"
 		printf "\t\t\t[ -r | --rustscan ]\tperform rustscan scan\n"
 		printf "\t\t\t[ -n | --nmap ]\t\tperform nmap scan\n"
 		printf "\t\t\t[ -a | --all ]\t\tperform both rustscan AND nmap scans (default if no switch specified)\n"
@@ -38,6 +39,7 @@ goscanFlag=false
 args=()
 for arg; do
 		case "$arg" in
+				--force)		args+=( -f ) ;;
 				--rustscan)		args+=( -r ) ;;
 				--nmap)			args+=( -n ) ;;
 				--all)			args+=( -a ) ;;
@@ -54,10 +56,12 @@ new_args=()
 while [ $OPTIND -le "$#" ]
 do
 	CURRENTARG=${!OPTIND}
-		if getopts ":rnaghN" option
+		if getopts ":frnaghN" option
 		then
 				case $option
 				in
+						f)	(( OPTIONCOUNT = OPTIONCOUNT + 1 ))
+								forceFlag=true ;;
 						r)	(( OPTIONCOUNT = OPTIONCOUNT + 1 ))
 								rustscanFlag=true ;;
 						n)	(( OPTIONCOUNT = OPTIONCOUNT + 1 ))
@@ -138,26 +142,40 @@ echo
 
 SCANOPTIONNB=1
 
-printf "\t($SCANOPTIONNB) Running fping and saving output to ./fping.txt\n"
-fping -a -g $subnetEntry 2>/dev/null > fping.txt
-# One problem with fping is that it will include the scanning-host local IP address if that address belongs to the scanned subnet.
-# We want to remove it with the lines below:
-ip a | grep "inet " | cut -d " " -f 6 | cut -d "/" -f 1 | grep -vw "127.0.0.1" | while read LINE
-	do
-		cat ./fping.txt | grep -vw "$LINE" > temp && mv temp ./fping.txt
-	done
+if [ "${forceFlag}" = true ]
+then
+	# if user wants to "force" the scan, we will
+	# (1) set the live_hosts_file_in_use to be the "./live_hosts_forced.txt" file
+	# (2) copy the target host (/32) or target subnet to live_hosts_file_in_use (./live_hosts_forced.txt)
+	# (3) skip the fping step (since the scan is forced, no need for fping discovery)
+	# (4) use the live_hosts_file_in_use (./live_hosts_forced.txt) subsequently
+	live_hosts_file_in_use="./live_hosts_forced.txt"
+	echo "$subnetEntry" > ${live_hosts_file_in_use}
+else
+	# if scan is not forced, we need to perform fping discovery
+	# we set the live_hosts_file_in_use to be the "./live_hosts.txt" file
+	live_hosts_file_in_use="./live_hosts.txt"
+	printf "\t($SCANOPTIONNB) Running fping and saving output to ./fping.txt\n"
+	fping -a -g $subnetEntry 2>/dev/null > fping.txt
+	# One problem with fping is that it will include the scanning-host local IP address if that address belongs to the scanned subnet.
+	# We want to remove it with the lines below:
+	ip a | grep "inet " | cut -d " " -f 6 | cut -d "/" -f 1 | grep -vw "127.0.0.1" | while read LINE
+		do
+			cat ./fping.txt | grep -vw "$LINE" > temp && mv temp ./fping.txt
+		done
 
-printf "\t\tfping found $(wc -l ./fping.txt | cut -d " " -f 1) live host(s) at:\n"
-cat ./fping.txt | while read LINE
-	do
-		printf "\t\t\t$LINE\n"
-	done
-printf "\t($SCANOPTIONNB) fping complete!\n"
-echo
+	printf "\t\tfping found $(wc -l ./fping.txt | cut -d " " -f 1) live host(s) at:\n"
+	cat ./fping.txt | while read LINE
+		do
+			printf "\t\t\t$LINE\n"
+		done
+	printf "\t($SCANOPTIONNB) fping complete!\n"
+	echo
 
-cp ./fping.txt ./live_hosts.txt
+	cp ./fping.txt ${live_hosts_file_in_use}
 
-((SCANOPTIONNB++))
+	((SCANOPTIONNB++))
+fi
 
 if [ "${npingFlag}" = true ]
 then
@@ -178,9 +196,11 @@ then
 	# Merge ./nping.txt with ./fping.txt, remove duplicates and save to ./live_hosts.txt
 	cat ./nping.txt | while read LINE
 		do
-			echo "$LINE" >> ./live_hosts.txt
+			#echo "$LINE" >> ./live_hosts.txt
+			echo "$LINE" >> ${live_hosts_file_in_use}
 		done
-	sort ./live_hosts.txt | uniq > temp && mv temp ./live_hosts.txt
+	#sort ./live_hosts.txt | uniq > temp && mv temp ./live_hosts.txt
+	sort ${live_hosts_file_in_use} | uniq > temp && mv temp ${live_hosts_file_in_use}
 	printf "\t($SCANOPTIONNB) nping complete!\n"
 	echo
 	((SCANOPTIONNB++))
@@ -191,10 +211,23 @@ then
 	# cleanup existing ./goscan.txt from previous scan
 	sudo rm ./goscan.txt 2>/dev/null
 	touch ./goscan.txt
-	cat ./live_hosts.txt | while read LINE
+	#cat ./live_hosts.txt | while read LINE
+	cat ${live_hosts_file_in_use} | while read LINE	
 		do
-			printf "\t($SCANOPTIONNB) Running command: goscan -target $LINE --all-ports | tee ./goscan_temp.txt\n"
-			goscan -target $LINE --all-ports | tee ./goscan_temp.txt
+			# goscan does not seem to work when a /32 target is specified
+			# so we add this step to handle this special case
+			# since /32 is a single host target, remove the /32 suffix and just keep the IP address part
+			if [ grep -q "/32" <<< $LINE ]
+			then
+  				printf "\t\t... found /32 target '$LINE' for goscan, removing subnet mask suffix ...\n"
+				LINECLEAN=${LINE%"/32"}
+				printf "\t\t... to force goscan on single host target: $LINECLEAN\n\n"
+			else
+				LINECLEAN=$LINE
+			fi
+
+			printf "\t($SCANOPTIONNB) Running command: goscan -target $LINECLEAN --all-ports | tee ./goscan_temp.txt\n"
+			goscan -target $LINECLEAN --all-ports | tee ./goscan_temp.txt
 			cat ./goscan_temp.txt | while read NEWLINE
 			do
 				echo $NEWLINE >> ./goscan.txt
@@ -211,8 +244,9 @@ then
 	# cleanup existing ./rustscan.oG and ./rustscan_summary.txt from previous scan
 	sudo rm ./rustscan.oG 2>/dev/null
 	sudo rm ./rustscan_summary.txt 2>/dev/null
-	printf "\t($SCANOPTIONNB) Running command: sudo rustscan -a ./live_hosts.txt -r 1-65535 --ulimit 5000 -- -A --append-output -oG ./rustscan.oG | tee ./rustscan.txt\n"
-	sudo rustscan -a ./live_hosts.txt -r 1-65535 --ulimit 5000 -- -A --append-output -oG ./rustscan.oG | tee ./rustscan.txt	
+	printf "\t($SCANOPTIONNB) Running command: sudo rustscan -a ${live_hosts_file_in_use} -r 1-65535 --ulimit 5000 -- -A --append-output -oG ./rustscan.oG | tee ./rustscan.txt\n"
+	#sudo rustscan -a ./live_hosts.txt -r 1-65535 --ulimit 5000 -- -A --append-output -oG ./rustscan.oG | tee ./rustscan.txt
+	sudo rustscan -a ${live_hosts_file_in_use} -r 1-65535 --ulimit 5000 -- -A --append-output -oG ./rustscan.oG | tee ./rustscan.txt	
 	printf "\t($SCANOPTIONNB) rustscan complete!\n"
 	((SCANOPTIONNB++))
 	echo
@@ -223,8 +257,9 @@ then
 	# cleanup existing ./nmap.oG and ./nmap_summary.txt from previous scan
 	sudo rm ./nmap.oG 2>/dev/null
 	sudo rm ./nmap_summary.txt 2>/dev/null
-	printf "\t($SCANOPTIONNB) Running command: sudo nmap -Pn -sV -A -T4 -p- -iL ./live_hosts.txt -oN ./nmap.txt -oG nmap.oG\n"
-	sudo nmap -Pn -sV -A -T4 -p- -iL ./live_hosts.txt -oN ./nmap.txt -oG ./nmap.oG
+	printf "\t($SCANOPTIONNB) Running command: sudo nmap -Pn -sV -A -T4 -p- -iL ${live_hosts_file_in_use} -oN ./nmap.txt -oG nmap.oG\n"
+	#sudo nmap -Pn -sV -A -T4 -p- -iL ./live_hosts.txt -oN ./nmap.txt -oG ./nmap.oG
+	sudo nmap -Pn -sV -A -T4 -p- -iL ${live_hosts_file_in_use} -oN ./nmap.txt -oG ./nmap.oG
 	printf "\t($SCANOPTIONNB) nmap complete!\n"
 	((SCANOPTIONNB++))
 	echo

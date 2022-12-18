@@ -11,7 +11,8 @@ Users take full responsibility for any actions performed using this tool.  The a
 
 ## Usage  
 ```text
-# sudo ./subnet-scanner A.B.C.D/E [-r] [-n] [-a] [-g] [-N] [-h]  
+# sudo ./subnet-scanner A.B.C.D/E [-f] [-r] [-n] [-a] [-g] [-N] [-h]  
+	[ -f | --force ] force the scan on the target host or target subnet by skipping the fping discovery step (use with -N when ICMP is likely blocked)
 	[ -r | --rustscan ] perform rustscan scan  
 	[ -n | --nmap ] perform nmap scan  
 	[ -a | --all ] perform both rustscan AND nmap scans (this is the default if no switch specified)  
