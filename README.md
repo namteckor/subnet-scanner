@@ -11,9 +11,10 @@ Users take full responsibility for any actions performed using this tool.  The a
 
 ## Usage  
 ```text
-# sudo ./subnet-scanner A.B.C.D/E [-f] [-r] [-n] [-a] [-g] [-N] [-h]  
+# sudo ./subnet-scanner A.B.C.D/E [-f] [-r] [-b] [-n] [-a] [-g] [-N] [-h]  
 	[ -f | --force ] force the scan on the target host or target subnet by skipping the fping discovery step (use with -N when ICMP is likely blocked)
 	[ -r | --rustscan ] perform rustscan scan  
+	[ -b | --batch-size ] <batch-size> the rustscan batch size (# of scanned ports at a time) for port scanning, it increases or slows the speed of scanning, 3000 by default  
 	[ -n | --nmap ] perform nmap scan  
 	[ -a | --all ] perform both rustscan AND nmap scans (this is the default if no switch specified)  
 	[ -g | --goscan] perform an optional goscan scan
@@ -22,7 +23,7 @@ Users take full responsibility for any actions performed using this tool.  The a
 ```
 
 Notes:  
-* Run with sudo/root privileges so that nmap can perform OS detection by using the -A switch  
+* Run with sudo/root privileges so that nmap can perform OS detection by using the nmap -A switch  
 * For A.B.C.D/E, use [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) notation, ex: 10.0.1.0/20, 192.168.5.0/27, etc.  
 * To scan a single host, use the /32 prefix length, ex: 10.0.1.111/32, 192.168.5.35/32, etc.  
 

@@ -3,9 +3,11 @@
 # Define a help() function to help and guide the user in case of errors
 help()
 {
-		printf "\n\tUsage:\tsudo ./subnet-scanner A.B.C.D/E [-f] [-r] [-n] [-a] [-g] [-N] [-h]\n"
+		printf "\n\tUsage:\tsudo ./subnet-scanner A.B.C.D/E [-f] [-r] [-b] [-n] [-a] [-g] [-N] [-h]\n"
 		printf "\t\t\t[ -f | --force ]\tforce the scan on the target host or target subnet by skipping the fping discovery step (use with -N when ICMP is likely blocked)\n"
 		printf "\t\t\t[ -r | --rustscan ]\tperform rustscan scan\n"
+		printf "\t\t\t[ -b | --batch-size ] <batch-size>\tthe rustscan batch size (# of scanned ports at a time) for port scanning,\n"
+		printf "\t\t\t\t\t\t\t\tit increases or slows the speed of scanning, 3000 by default\n"
 		printf "\t\t\t[ -n | --nmap ]\t\tperform nmap scan\n"
 		printf "\t\t\t[ -a | --all ]\t\tperform both rustscan AND nmap scans (default if no switch specified)\n"
 		printf "\t\t\t[ -g | --goscan ]\tperform an optional goscan scan\n"
@@ -34,6 +36,8 @@ nmapFlag=false
 allFlag=false
 npingFlag=false
 goscanFlag=false
+rustscanBatchFlag=false
+rustscanBatchSize=3000
 
 # Replace long arguments
 args=()
@@ -41,6 +45,7 @@ for arg; do
 		case "$arg" in
 				--force)		args+=( -f ) ;;
 				--rustscan)		args+=( -r ) ;;
+				--batch-size)	args+=( -b ) ;;
 				--nmap)			args+=( -n ) ;;
 				--all)			args+=( -a ) ;;
 				--goscan)		args+=( -g ) ;;
@@ -56,7 +61,7 @@ new_args=()
 while [ $OPTIND -le "$#" ]
 do
 	CURRENTARG=${!OPTIND}
-		if getopts ":frnaghN" option
+		if getopts ":frbnaghN" option
 		then
 				case $option
 				in
@@ -64,6 +69,18 @@ do
 								forceFlag=true ;;
 						r)	(( OPTIONCOUNT = OPTIONCOUNT + 1 ))
 								rustscanFlag=true ;;
+						b)	(( OPTIONCOUNT = OPTIONCOUNT + 1 ))
+								rustscanBatchFlag=true
+								# Check next positional parameter
+								eval nextopt=\${$OPTIND}
+								# existing or starting with dash?
+								if [[ -n $nextopt && $nextopt != -* ]] ; then
+									OPTIND=$((OPTIND + 1))
+									rustscanBatchSize=$nextopt
+								else
+									rustscanBatchSize=3000
+								fi
+						;;
 						n)	(( OPTIONCOUNT = OPTIONCOUNT + 1 ))
 								nmapFlag=true ;;
 						a)	(( OPTIONCOUNT = OPTIONCOUNT + 1 ))
@@ -243,9 +260,15 @@ then
 	# cleanup existing ./rustscan.oG and ./rustscan_summary.txt from previous scan
 	sudo rm ./rustscan.oG 2>/dev/null
 	sudo rm ./rustscan_summary.txt 2>/dev/null
-	printf "\t($SCANOPTIONNB) Running command: sudo rustscan -a ${live_hosts_file_in_use} -r 1-65535 --ulimit 5000 -- -A --append-output -oG ./rustscan.oG | tee ./rustscan.txt\n"
+	printf "\t($SCANOPTIONNB) Running command: sudo rustscan -a ${live_hosts_file_in_use} -b ${rustscanBatchSize} -r 1-65535 --ulimit 5000 -- -A --append-output -oG ./rustscan.oG | tee ./rustscan.txt\n"
+	printf "\twith target(s) ${live_hosts_file_in_use} =\n"
+	cat ${live_hosts_file_in_use} | while read LINE
+		do
+			printf "\t\t$LINE"
+		done
+	echo
 	#sudo rustscan -a ./live_hosts.txt -r 1-65535 --ulimit 5000 -- -A --append-output -oG ./rustscan.oG | tee ./rustscan.txt
-	sudo rustscan -a ${live_hosts_file_in_use} -r 1-65535 --ulimit 5000 -- -A --append-output -oG ./rustscan.oG | tee ./rustscan.txt	
+	sudo rustscan -a ${live_hosts_file_in_use} -b ${rustscanBatchSize} -r 1-65535 --ulimit 5000 -- -A --append-output -oG ./rustscan.oG | tee ./rustscan.txt	
 	printf "\t($SCANOPTIONNB) rustscan complete!\n"
 	((SCANOPTIONNB++))
 	echo
